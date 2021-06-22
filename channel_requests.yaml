@@ -1,4 +1,6 @@
 # Mac Pass repeaters
+
+# Mac Pass UHF
 - R: MP
   T:
   - MPRG1
@@ -8,12 +10,172 @@
   - Local2
   - MT SW
   - MT Chat
+  - NoAmer
+  - WW
+  - TAC310
+  - TAC311
+  - TAC312
+  - TAC313
+  - TAC314
+  - TAC315
+  - TAC316
+  - TAC317
+  - TAC318
+  - TAC319
+  - US SAR
+  - US SAR TAC
+
+# Mac Pass 2M
+- R: MP2
+  T:
+  - MPRG1
+  - MPRG2
+  - MPRG3
+  - MPRG Cluster
+  - Local2
+  - MT SW
+  - MT Chat
+  - NoAmer
+  - WW
+  - TAC310
+  - TAC311
+  - TAC312
+  - TAC313
+  - TAC314
+  - TAC315
+  - TAC316
+  - TAC317
+  - TAC318
+  - TAC319
+  - US SAR
+  - US SAR TAC
+
+# Helena North Hills
+- R: NH
+  T:
+  - MPRG1
+  - MPRG2
+  - MPRG3
+  - MPRG Cluster
+  - Local2
+  - MT SW
+  - MT Chat
+  - NoAmer
+  - WW
+  - TAC310
+  - TAC311
+  - TAC312
+  - TAC313
+  - TAC314
+  - TAC315
+  - TAC316
+  - TAC317
+  - TAC318
+  - TAC319
+  - US SAR
+  - US SAR TAC
+
+# Boulder Hill
+- R: BH
+  T:
+  - MPRG1
+  - MPRG2
+  - MPRG3
+  - MPRG Cluster
+  - Local2
+  - MT SW
+  - MT Chat
+  - NoAmer
+  - WW
+  - TAC310
+  - TAC311
+  - TAC312
+  - TAC313
+  - TAC314
+  - TAC315
+  - TAC316
+  - TAC317
+  - TAC318
+  - TAC319
+  - US SAR
+  - US SAR TAC
+
+# Great Falls
+- R: GF
+  T:
+  - MPRG1
+  - MPRG2
+  - MPRG3
+  - MPRG Cluster
+  - Local2
+  - MT SW
+  - MT Chat
+  - NoAmer
+  - WW
+  - TAC310
+  - TAC311
+  - TAC312
+  - TAC313
+  - TAC314
+  - TAC315
+  - TAC316
+  - TAC317
+  - TAC318
+  - TAC319
+  - US SAR
+  - US SAR TAC
+
+# Big Fork
+- R: BF
+  T:
+  - MPRG1
+  - MPRG2
+  - MPRG3
+  - MPRG Cluster
+  - Local2
+  - MT SW
+  - MT Chat
+  - NoAmer
+  - WW
+  - TAC310
+  - TAC311
+  - TAC312
+  - TAC313
+  - TAC314
+  - TAC315
+  - TAC316
+  - TAC317
+  - TAC318
+  - TAC319
+  - US SAR
+  - US SAR TAC
 
 # Helena analog repeaters
 - R: CCARC
 
-# Simplex channels
+# Analog Simplex channels
 - S: 146.52 A
+- S: 446.0 A
+- S: 146.55 A
+- S: Al & Kathe A
+- S: Quartzfest A
+- S: Helena ARES A
+
+# Digital Simplex channels
+- S: Simp 1D 145.79
+- S: Simp 2D 145.51
+- S: Simp 1D 441.0
+- S: Simp 2D 446.5
+- S: Simp 3D 446.075
+- S: Simp 4D 433.45
 
 # Simplex RO channels
+- S: SAR RO # National SAR channel NO TRANSMIT, Part 95
+
 - S: WX1 RO
+- S: WX2 RO
+- S: WX3 RO
+- S: WX4 RO
+- S: WX5 RO
+- S: WX6 RO
+- S: WX7 RO
