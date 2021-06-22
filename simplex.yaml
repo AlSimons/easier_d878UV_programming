@@ -25,22 +25,22 @@ Helena ARES A:
   Mode: A
 
 # Digital
-V Simplex 1D:
+Simp 1D 145.79:
   Freq: 145.79
   Mode: D
-V Simplex 2D:
+Simp 2D 145.51:
   Freq: 145.51
   Mode: D
-U Simplex 1 D:
+Simp 1D 441.0:
   Freq: 441.0
   Mode: D
-U Simplex 2 D:
+Simp 2D 446.5:
   Freq: 446.5
   Mode: D
-U Simplex 3 D:
+Simp 3D 446.075:
   Freq: 446.075
   Mode: D
-U Simplex 4 D:
+Simp 4D 433.45:
   Freq: 433.45
   Mode: D
 
