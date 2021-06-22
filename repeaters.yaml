@@ -14,6 +14,23 @@ MP:
     - 8
     2:
     - 31301
+
+MP2:
+  Name: MP 2M
+  Town: Helena, MT
+  RX: 147.1
+  TX: 147.7
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+    - 31302
+    - 31303
+    - 8
+    2:
+    - 31301
+
 NH:
   Name: MPNorth
   Town: Helena, MT
@@ -23,11 +40,11 @@ NH:
   CC: 1
   DynamicTGs: 1
   StaticTGs:
-  1:
+    1:
     - 31302
     - 31303
     - 8
-  2:
+    2:
     - 31301
 BF:
   Name: Bfork
@@ -38,11 +55,44 @@ BF:
   CC: 1
   DynamicTGs: 1
   StaticTGs:
-  - 1:
+    1:
     - 31301
     - 313976
     2:
     - 31304
+
+
+BH:
+  Name: Boulder Hill
+  Town: Boulder, MT
+  RX: 449.2
+  TX: 444.2
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+    - 31302
+    - 31303
+    - 8
+    2:
+    - 31301
+
+GF:
+  Name: Great Falls
+  Town: Great Falls, MT
+  RX: 449.2
+  TX: 444.2
+  Mode: D
+  CC: 2
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+    - 31302
+    - 8
+    2:
+    - 31301
+
 
 # Helena analog repeaters
 CCARC:
