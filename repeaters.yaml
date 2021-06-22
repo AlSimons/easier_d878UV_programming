@@ -1,0 +1,54 @@
+# MPRG MacDonald Pass UHF
+MP:
+  Name: MP
+  Town: Helena, MT
+  RX: 444.1
+  TX: 449.1
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+    - 31302
+    - 31303
+    - 8
+    2:
+    - 31301
+NH:
+  Name: MPNorth
+  Town: Helena, MT
+  RX: 448.9
+  TX: 443.9
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+  1:
+    - 31302
+    - 31303
+    - 8
+  2:
+    - 31301
+BF:
+  Name: Bfork
+  Town: Bigfork, MT
+  RX: 444.325
+  TX: 449.325
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+  - 1:
+    - 31301
+    - 313976
+    2:
+    - 31304
+
+# Helena analog repeaters
+CCARC:
+  Name: CCARC A
+  Town: Helena, MT
+  RX: 147.22
+  TX: 147.82
+  Mode: A
+  CTCSS: 100.0

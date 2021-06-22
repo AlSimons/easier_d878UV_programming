@@ -1,0 +1,19 @@
+# Mac Pass repeaters
+- R: MP
+  T:
+  - MPRG1
+  - MPRG2
+  - MPRG3
+  - MPRG Cluster
+  - Local2
+  - MT SW
+  - MT Chat
+
+# Helena analog repeaters
+- R: CCARC
+
+# Simplex channels
+- S: 146.52 A
+
+# Simplex RO channels
+- S: WX1 RO

@@ -1,0 +1,50 @@
+  No.: -1
+  Channel Name: 
+  Receive Frequency: 0.0
+  Transmit Frequency: 0.0
+  Channel Type: Unknown
+  Transmit Power: High
+  Band Width: 0
+  # If "Off" is not quoted, it is recorded as False
+  CTCSS/DCS Decode: "Off"
+  CTCSS/DCS Encode: "Off"
+  Contact: NoTG
+  Contact Call Type: Group Call
+  Contact TG/DMR ID: 0
+  Radio ID: WA1TYB Al
+  Busy Lock/TX Permit: Different color code
+  Squelch Mode: Carrier
+  Optional Signal: "Off"
+  DTMF ID: 1
+  2Tone ID: 1
+  5Tone ID: 1
+  PTT ID: "Off"
+  Color Code: 1
+  Slot: 0
+  Scan List: None
+  Receive Group List: None
+  PTT Prohibit: "Off"
+  Reverse: "Off"
+  Simplex TDMA: "Off"
+  Slot Suit: "Off"
+  AES Digital Encryption: Normal Encryption
+  Digital Encryption: "Off" 
+  Call Confirmation: "Off"
+  Talk Around(Simplex): "Off"
+  Work Alone: "Off"
+  Custom CTCSS: "0.0"
+  2TONE Decode: 1
+  Ranging: "Off"
+  Through Mode: "Off"
+  APRS RX: "Off"
+  Analog APRS PTT Mode: "Off"
+  Digital APRS PTT Mode: "Off"
+  APRS Report Type: "Off"
+  Digital APRS Report Channel: 1
+  Correct Frequency[Hz]: 0
+  SMS Confirmation: "Off"
+  Exclude channel from roaming: 0
+  DMR MODE: 0
+  DataACK Disable: 0
+  R5toneBot: 0
+  R5ToneEot: 0

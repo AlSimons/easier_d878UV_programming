@@ -1,0 +1,81 @@
+#
+# Define all the simplex channels we'll use
+# Analog have no tone specified, and transmit permission channel clear
+# Digital are all CC1, talk group 99, time slot 1, and transmit permission
+# color code free so not specified here.
+
+# Analog
+146.52 A:
+  Freq: 146.52
+  Mode: A
+446.0 A:
+  Freq: 446.0
+  Mode: A
+146.55 A:
+  Freq: 146.55
+  Mode: A
+Al & Kathe A:
+  Freq: 147.54
+  Mode: A
+Quartzfest A:
+  Freq: 146.5
+  Mode: A
+Helena ARES A:
+  Freq: 147.5
+  Mode: A
+
+# Digital
+V Simplex 1D:
+  Freq: 145.79
+  Mode: D
+V Simplex 2D:
+  Freq: 145.51
+  Mode: D
+U Simplex 1 D:
+  Freq: 441.0
+  Mode: D
+U Simplex 2 D:
+  Freq: 446.5
+  Mode: D
+U Simplex 3 D:
+  Freq: 446.075
+  Mode: D
+U Simplex 4 D:
+  Freq: 433.45
+  Mode: D
+
+# Receive-only
+SAR RO:
+  Freq: 155.16
+  Mode: A
+  RO: True
+
+# Weather
+WX1 RO:
+  Freq: 162.4
+  Mode: A
+  RO: True
+WX2 RO:
+  Freq: 162.425
+  Mode: A
+  RO: True
+WX3 RO:
+  Freq: 162.45
+  Mode: A
+  RO: True
+WX4 RO:
+  Freq: 162.475
+  Mode: A
+  RO: True
+WX5 RO:
+  Freq: 162.5
+  Mode: A
+  RO: True
+WX6 RO:
+  Freq: 162.525
+  Mode: A
+  RO: True
+WX7 RO:
+  Freq: 162.55
+  Mode: A
+  RO: True
