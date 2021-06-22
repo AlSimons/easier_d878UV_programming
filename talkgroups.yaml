@@ -12,3 +12,28 @@ Local2: 2
 # Montana
 MT SW: 3130
 MT Chat: 31300
+
+# Emergency
+US SAR: 31681
+US SAR TAC: 31682
+
+# Wide Area
+NoAmer: 93
+WW: 91
+
+# TAC Channels
+TAC310: 310
+TAC311: 311
+TAC312: 312
+TAC313: 313
+TAC314: 314
+TAC315: 315
+TAC316: 316
+TAC317: 317
+TAC318: 318
+TAC319: 319
+
+# Parrot  NOTE: PRIVATE CALL, notice different format of YAML
+PARROT:
+  Number: 9990
+  Private: True
