@@ -1,0 +1,19 @@
+# radio_ids.yaml
+# Defines the radio ID(s) to be used with this radio.
+# Radio ID and Name are pretty self explanatory.
+# Abbrev needs some explanation.
+# We are a two ham family, and we will be sharing the radio.
+# Since the IDs are associated with channels, this means that all the channels
+# have to be duplicated, one for each ID.  The idea is to populate "his and her"
+# (in our case) zones, containing the channels for one ID or the other.
+# The Abbrev(iation) will be prefixed to the zones, to distinguish them.
+# A single letter is suggested, but not enforced.
+#
+# Radio ID and Name are exported into the csv file RadioIDList.CSV.
+
+- Name: WA1TYB Al
+  Id: 3181761
+  Abbrev: A
+- Name: N1NYT Kathe
+  Id: 3181902
+  Abbrev: K
