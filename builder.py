@@ -1,7 +1,7 @@
 import csv
 import yaml
 
-
+"""
 csv_field_names = ['No.', 'Channel Name', 'Receive Frequency',
                    'Transmit Frequency', 'Channel Type', 'Transmit Power',
                    'Band Width', 'CTCSS/DCS Decode', 'CTCSS/DCS Encode',
@@ -19,62 +19,79 @@ csv_field_names = ['No.', 'Channel Name', 'Receive Frequency',
                    'Correct Frequency[Hz]', 'SMS Confirmation',
                    'Exclude channel from roaming', 'DMR MODE',
                    'DataACK Disable', 'R5toneBot', 'R5ToneEot']
+"""
 
 
 def load_data_from_yaml_files():
     """
     Loads data from
+        - radio_ids.yaml,
         - repeaters.yaml,
         - talkgroups.yaml,
         - simplex.yaml, and
-        - channel_info.yaml,
-        - channel_defaults.yaml.
+        - channel_requests.yaml,
+        - special_zones.yaml,
+        - channel_defaults.yaml,
+        - field_names.yaml
     :return: Dicts:
+               radio_ids,
                repeaters,
                talkgroups,
                simplex,
-               channel_info,
+               channel_requests,
+               special_zones,
                channel_defaults
+               field_names
     """
+    with open('radio_ids.yaml') as f:
+        radio_ids = yaml.safe_load(f)
     with open('repeaters.yaml') as f:
         repeaters = yaml.safe_load(f)
     with open('talkgroups.yaml') as f:
         talkgroups = yaml.safe_load(f)
     with open('simplex.yaml') as f:
         simplex = yaml.safe_load(f)
-    with open('channel_info.yaml') as f:
-        channel_info = yaml.safe_load(f)
+    with open('channel_requests.yaml') as f:
+        channel_requests = yaml.safe_load(f)
+    with open('special_zones.yaml') as f:
+        special_zones = yaml.safe_load(f)
     with open('channel_defaults.yaml') as f:
         channel_defaults = yaml.safe_load(f)
-    return repeaters, talkgroups, simplex, channel_info, channel_defaults
+    with open('field_names.yaml') as f:
+        field_names = yaml.safe_load(f)
+    return radio_ids, repeaters, talkgroups, simplex, channel_requests, \
+        special_zones, channel_defaults, field_names
 
 
-def write_csv(channels):
-    with open('tyb_channels.csv', 'w', newline='') as f:
+def write_dict_to_csv(dict_list_to_write, file_name, field_names):
+    index_dict_list(dict_list_to_write)
+    with open(file_name, 'w', newline='') as f:
         writer = csv.DictWriter(f,
-                                fieldnames=csv_field_names,
+                                fieldnames=field_names,
+                                extrasaction='ignore',
                                 quoting=csv.QUOTE_ALL,
                                 quotechar='"')
         writer.writeheader()
-        for channel in channels:
-            writer.writerow(channel)
+        for row in dict_list_to_write:
+            writer.writerow(row)
 
 
-def index_channels(channels):
+def index_dict_list(dictionary_list):
     """
     Once the channels list is completely populated, add the "No." field to
     each entry.
-    :param channels: The fully populated list of channels.
-    :return: None. Channels is updated.
+    :param dictionary_list: The fully populated dictionary.
+    :return: None. The dictionary is updated.
     """
-    for i, channel in enumerate(channels):
-        channel["No."] = str(i + 1)
+    for i, row in enumerate(dictionary_list):
+        row["No."] = str(i + 1)
 
 
 def make_analog_repeater_channel(channels,
+                                 channels_by_name,
                                  repeater,
-                                 channel_request,
-                                 channel_defaults):
+                                 channel_defaults,
+                                 zones):
     channel = channel_defaults.copy()
     channel['Channel Name'] = repeater['Name']
     channel['Transmit Frequency'] = '{:<09}'.format(repeater['TX'])
@@ -98,12 +115,16 @@ def make_analog_repeater_channel(channels,
         channel['PTT Prohibit'] = 'True'
 
     channels.append(channel)
+    channels_by_name[channel['Channel Name']] = channel
+    insert_into_zones(channel, zones)
 
 
 def make_analog_simplex_channel(channels,
+                                channels_by_name,
                                 simplex_name,
                                 simplex_channel,
-                                channel_defaults):
+                                channel_defaults,
+                                zones):
     channel = channel_defaults.copy()
     channel['Channel Name'] = simplex_name
     channel['Transmit Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
@@ -115,14 +136,19 @@ def make_analog_simplex_channel(channels,
         channel['PTT Prohibit'] = 'On'
     print(channel)
     channels.append(channel)
+    channels_by_name[simplex_name] = channel
+    insert_into_zones(channel, zones)
 
 
 def make_digital_repeater_channel(channels,
+                                  channels_by_name,
                                   repeater,
                                   talkgroup,
                                   talkgroup_number,
-                                  channel_defaults):
+                                  channel_defaults,
+                                  zones):
     channel = channel_defaults.copy()
+    channel['Repeater Name'] = repeater['Name']
     channel['Channel Name'] = repeater['Name'] + ' ' + talkgroup
     channel['Transmit Frequency'] = '{:<09}'.format(repeater['TX'])
     channel['Receive Frequency'] = '{:<09}'.format(repeater['RX'])
@@ -136,34 +162,57 @@ def make_digital_repeater_channel(channels,
     channel['Slot'] = repeater['DynamicTGs']
     for slot in [1, 2]:
         if talkgroup_number in repeater['StaticTGs'][slot]:
-            channel['Slot'] = slot # Choose the right slot for a static TG
-    #print(repeater)
-    #print(talkgroup)
+            channel['Slot'] = slot  # Choose the right slot for a static TG
     channels.append(channel)
+    channels_by_name[channel['Channel Name']] = channel
+    insert_into_zones(channel, zones)
 
 
 def make_digital_repeater_channels(channels,
+                                   channels_by_name,
                                    repeater,
                                    talkgroups,
                                    channel_request,
-                                   channel_defaults):
+                                   channel_defaults,
+                                   zones):
     for talkgroup in channel_request['T']:
         make_digital_repeater_channel(channels,
+                                      channels_by_name,
                                       repeater,
                                       talkgroup,
                                       talkgroups[talkgroup],
-                                      channel_defaults)
+                                      channel_defaults,
+                                      zones)
 
 
-def make_digital_simplex_channel():
-    pass
+def make_digital_simplex_channel(channels,
+                                 channels_by_name,
+                                 simplex_name,
+                                 simplex_channel,
+                                 channel_defaults,
+                                 zones):
+    channel = channel_defaults.copy()
+    channel['Channel Name'] = simplex_name
+    channel['Transmit Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
+    channel['Receive Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
+    channel['Channel Type'] = 'D-Digital'
+    channel['Band Width'] = '12.5K'
+    channel['Color Code'] = 1
+    channel['Contact TG/DMR ID'] = 99
+    channel['Slot'] = 1
+    if 'RO' in simplex_channel.keys() and simplex_channel['RO']:
+        channel['PTT Prohibit'] = 'On'
+    channels.append(channel)
+    channels_by_name[channel['Channel Name']] = channel
+    insert_into_zones(channel, zones)
 
 
 def make_channels(repeaters,
                   talkgroups,
                   simplex,
-                  channel_info,
-                  channel_defaults):
+                  channel_requests,
+                  channel_defaults,
+                  zones):
     """
     Walks over the desired channels list specified in channel_info, and builds
     the dictionary of all the channels, ready to be written to a CSV file for
@@ -171,56 +220,117 @@ def make_channels(repeaters,
     :param repeaters: A dict of repeater info
     :param talkgroups: A dict of talkgroup info
     :param simplex: A dict of simplex channels
-    :param channel_info: A dict of desired channels
+    :param channel_requests: A dict of desired channels
     :param channel_defaults: A dict with the default values for the channels
         CSV value
+    :param zones: A dict into which zone info will be entered.
     :return: A list of fully populated dicts for writing to a CSV
     """
     channels = []
-    for channel_request in channel_info:
-        print(channel_request)
-        channel = None
+    channels_by_name = {}
+    for channel_request in channel_requests:
         if 'R' in channel_request.keys():
             repeater = repeaters[channel_request['R']]
             if repeater['Mode'] == 'D':
                 make_digital_repeater_channels(channels,
+                                               channels_by_name,
                                                repeater,
                                                talkgroups,
                                                channel_request,
-                                               channel_defaults)
+                                               channel_defaults,
+                                               zones)
             elif repeater['Mode'] == 'A':
                 make_analog_repeater_channel(channels,
+                                             channels_by_name,
                                              repeater,
-                                             channel_request,
-                                             channel_defaults)
+                                             channel_defaults,
+                                             zones)
         elif 'S' in channel_request.keys():
             simplex_name = channel_request['S']
             simplex_channel = simplex[simplex_name]
             if simplex_channel['Mode'] == 'A':
                 make_analog_simplex_channel(channels,
+                                            channels_by_name,
                                             simplex_name,
                                             simplex_channel,
-                                            channel_defaults)
-    return channels
+                                            channel_defaults,
+                                            zones)
+            else:
+                make_digital_simplex_channel(channels,
+                                             channels_by_name,
+                                             simplex_name,
+                                             simplex_channel,
+                                             channel_defaults,
+                                             zones)
+    return channels, channels_by_name
+
+
+def add_special_zone_members(channels, special_zones, zones):
+    pass
+
+
+def insert_into_zones(channel, zones):
+    if channel['Transmit Frequency'] == channel['Receive Frequency']:
+        # RX == TX: A simplex channel
+        insert_into_zone(channel, 'simplex', zones)
+    else:
+        # All repeaters go into a zone named for the repeater.
+        if channel['Channel Type'] == 'D-Digital':
+            zone_name = channel['Repeater Name']
+        else:
+            zone_name = channel['Channel Name']
+        insert_into_zone(channel, zone_name, zones)
+
+
+def insert_into_zone(channel, zone_key, zones):
+    try:
+        this_zone = zones[zone_key]
+    except KeyError:
+        this_zone = {}
+        zones[zone_key] = this_zone
+        this_zone['Zone Name'] = zone_key
+        this_zone['Zone Channel Member'] = []
+        this_zone['Zone Channel Member RX Frequency'] = []
+        this_zone['Zone Channel Member TX Frequency'] = []
+    this_zone['Zone Channel Member'].append(channel['Channel Name'])
+    this_zone['Zone Channel Member RX Frequency'].append(
+        channel['Receive Frequency'])
+    this_zone['Zone Channel Member TX Frequency'].append(
+        channel['Transmit Frequency'])
+    if len(this_zone['Zone Channel Member']) == 1:
+        this_zone['A Channel'] = channel['Channel Name']
+        this_zone['A Channel RX Frequency'] = channel['Receive Frequency']
+        this_zone['A Channel TX Frequency'] = channel['Transmit Frequency']
+    if len(this_zone['Zone Channel Member']) == 2:
+        this_zone['B Channel'] = channel['Channel Name']
+        this_zone['B Channel RX Frequency'] = channel['Receive Frequency']
+        this_zone['B Channel TX Frequency'] = channel['Transmit Frequency']
 
 
 def main():
-    repeaters, talkgroups, simplex, channel_info, channel_defaults = \
-        load_data_from_yaml_files()
+    zones = {}
+    (radio_ids,
+     repeaters,
+     talkgroups,
+     simplex,
+     channel_requests,
+     special_zones,
+     channel_defaults,
+     field_names) = load_data_from_yaml_files()
     print("Repeaters", repeaters)
     print("Talkgroups", talkgroups)
     print("Simplex", simplex)
-    print("Channel info", channel_info)
+    print("Channel requests", channel_requests)
     print("Channel defaults", channel_defaults)
-    channels = make_channels(repeaters,
+    channels, channels_by_name = make_channels(repeaters,
                              talkgroups,
                              simplex,
-                             channel_info,
-                             channel_defaults)
-    index_channels(channels)
-    for channel in channels:
-        print(channel)
-    write_csv(channels)
+                             channel_requests,
+                             channel_defaults,
+                             zones)
+    write_dict_to_csv(channels, 'channels.csv', field_names['channels'])
+    write_dict_to_csv(radio_ids, 'radio_ids.csv', field_names['radio_ids'])
+
 
 if __name__ == "__main__":
     main()

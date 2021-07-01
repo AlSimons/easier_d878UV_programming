@@ -1,0 +1,15 @@
+# special_zones.yaml
+# All channels are automatically put into a zone named for the repeater
+# used.  All simplex channels are automatically put into a zone named
+# "Simplex".
+# This file is used to specify channels that go into other zones, for
+# instance to put "core" simplex channels, e.g., 146.52 and 446.0, into
+# all zones.
+
+- Name: ALL_ZONES
+  Channels:
+    - 146.52
+    - 446.0
+- Name: MP
+  Channels:
+    - Al & Kathe

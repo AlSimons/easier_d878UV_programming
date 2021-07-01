@@ -1,4 +1,5 @@
 .idea
 learn_yaml.py
 Pipfile.lock
-tyb_channels.csv
+radio_ids.csv
+generated_channels.yaml

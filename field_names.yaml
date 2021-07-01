@@ -1,0 +1,91 @@
+# Define the field (column) names and order of names to use in the first row 
+# of each CSV file.
+channels:
+  - No.
+  - Channel Name
+  - Receive Frequency
+  - Transmit Frequency
+  - Channel Type
+  - Transmit Power
+  - Band Width
+  - CTCSS/DCS Decode
+  - CTCSS/DCS Encode
+  - Contact
+  - Contact Call Type
+  - Contact TG/DMR ID
+  - Radio ID
+  - Busy Lock/TX Permit
+  - Squelch Mode
+  - Optional Signal
+  - DTMF ID
+  - 2Tone ID
+  - 5Tone ID
+  - PTT ID
+  - Color Code
+  - Slot
+  - Scan List
+  - Receive Group List
+  - PTT Prohibit
+  - Reverse
+  - Simplex TDMA
+  - Slot Suit
+  - AES Digital Encryption
+  - Digital Encryption
+  - Call Confirmation
+  - Talk Around(Simplex)
+  - Work Alone
+  - Custom CTCSS
+  - 2TONE Decode
+  - Ranging
+  - Through Mode
+  - APRS RX
+  - Analog APRS PTT Mode
+  - Digital APRS PTT Mode
+  - APRS Report Type
+  - Digital APRS Report Channel
+  - Correct Frequency[Hz]
+  - SMS Confirmation
+  - Exclude channel from roaming
+  - DMR MODE
+  - DataACK Disable
+  - R5toneBot
+  - R5ToneEot
+
+radio_ids:
+  - No.
+  - Radio ID
+  - Name
+
+zones:
+  - No.
+  - Zone Name
+  - Zone Channel Member
+  - Zone Channel Member RX Frequency
+  - Zone Channel Member TX Frequency
+  - A Channel
+  - A Channel RX Frequency
+  - A Channel TX Frequency
+  - B Channel
+  - B Channel RX Frequency
+  - B Channel TX Frequency
+
+scan_list:
+  - No.
+  - Scan List Name
+  - Scan Channel Member
+  - Scan Channel Member RX Frequency
+  - Scan Channel Member TX Frequency
+  - Scan Mode
+  - Priority Channel Select
+  - Priority Channel 1
+  - Priority Channel 1 RX Frequency
+  - Priority Channel 1 TX Frequency
+  - Priority Channel 2
+  - Priority Channel 2 RX Frequency
+  - Priority Channel 2 TX Frequency
+  - Revert Channel
+  - Look Back Time A[s]
+  - Look Back Time B[s]
+  - Dropout Delay Time[s]
+  - Dwell Time[s]
+
