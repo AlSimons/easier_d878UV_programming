@@ -32,7 +32,7 @@ MP2:
     - 31301
 
 NH:
-  Name: MPNorth
+  Name: NorthHil
   Town: Helena, MT
   RX: 448.9
   TX: 443.9
@@ -47,7 +47,7 @@ NH:
     2:
     - 31301
 BF:
-  Name: Bfork
+  Name: BgFork
   Town: Bigfork, MT
   RX: 444.325
   TX: 449.325
@@ -96,7 +96,7 @@ GF:
 
 # Helena analog repeaters
 CCARC:
-  Name: CCARC A
+  Name: CCARC Blmt
   Town: Helena, MT
   RX: 147.22
   TX: 147.82

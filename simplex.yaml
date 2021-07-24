@@ -4,6 +4,13 @@
 # Digital are all CC1, talk group 99, time slot 1, and transmit permission
 # color code free so not specified here.
 
+# Format is
+# channel-name:
+#   Freq: frequency in MHz
+#   Mode: A or D
+#   RO: True  **for receive-only channels, such as weather**
+
+
 # Analog
 146.52 A:
   Freq: 146.52

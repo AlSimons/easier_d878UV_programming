@@ -153,7 +153,6 @@ def make_analog_simplex_channel(channels,
     channel['Busy Lock/TX Permit'] = 'Busy'
     if 'RO' in simplex_channel.keys() and simplex_channel['RO']:
         channel['PTT Prohibit'] = 'On'
-    print(channel)
     channels.append(channel)
     channels_by_name[simplex_name] = channel
     insert_into_zones(channel, zones)
@@ -165,7 +164,8 @@ def make_digital_repeater_channel(channels,
                                   talkgroup,
                                   talkgroup_number,
                                   channel_defaults,
-                                  zones):
+                                  zones,
+                                  radio_id):
     channel = channel_defaults.copy()
     channel['Repeater Name'] = repeater['Name']
     channel['Channel Name'] = repeater['Name'] + ' ' + talkgroup
@@ -176,7 +176,7 @@ def make_digital_repeater_channel(channels,
     channel['Color Code'] = repeater['CC']
     channel['Contact'] = talkgroup
     channel['Contact TG/DMR ID'] = talkgroup_number
-
+    channel['Radio ID'] = radio_id['Name']
     # Assume the TG is dynamic.  We'll fix it if it is static
     channel['Slot'] = repeater['DynamicTGs']
     for slot in [1, 2]:
@@ -184,7 +184,7 @@ def make_digital_repeater_channel(channels,
             channel['Slot'] = slot  # Choose the right slot for a static TG
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
-    insert_into_zones(channel, zones)
+    insert_into_zones(channel, zones, radio_id)
 
 
 def make_digital_repeater_channels(channels,
@@ -193,7 +193,8 @@ def make_digital_repeater_channels(channels,
                                    talkgroups,
                                    channel_request,
                                    channel_defaults,
-                                   zones):
+                                   zones,
+                                   radio_id):
     for talkgroup in channel_request['T']:
         make_digital_repeater_channel(channels,
                                       channels_by_name,
@@ -201,7 +202,8 @@ def make_digital_repeater_channels(channels,
                                       talkgroup,
                                       talkgroups[talkgroup],
                                       channel_defaults,
-                                      zones)
+                                      zones,
+                                      radio_id)
 
 
 def make_digital_simplex_channel(channels,
@@ -209,7 +211,8 @@ def make_digital_simplex_channel(channels,
                                  simplex_name,
                                  simplex_channel,
                                  channel_defaults,
-                                 zones):
+                                 zones,
+                                 radio_id):
     channel = channel_defaults.copy()
     channel['Channel Name'] = simplex_name
     channel['Transmit Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
@@ -219,11 +222,12 @@ def make_digital_simplex_channel(channels,
     channel['Color Code'] = 1
     channel['Contact TG/DMR ID'] = 99
     channel['Slot'] = 1
+    channel['Radio ID'] = radio_id['Name']
     if 'RO' in simplex_channel.keys() and simplex_channel['RO']:
         channel['PTT Prohibit'] = 'On'
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
-    insert_into_zones(channel, zones)
+    insert_into_zones(channel, zones, radio_id)
 
 
 def make_channels(repeaters,
@@ -231,7 +235,8 @@ def make_channels(repeaters,
                   simplex,
                   channel_requests,
                   channel_defaults,
-                  zones):
+                  zones,
+                  radio_ids):
     """
     Walks over the desired channels list specified in channel_info, and builds
     the dictionary of all the channels, ready to be written to a CSV file for
@@ -243,44 +248,49 @@ def make_channels(repeaters,
     :param channel_defaults: A dict with the default values for the channels
         CSV value
     :param zones: A dict into which zone info will be entered.
+    :param radio_ids: a list of dicts (possibly of length one), containing
+        information about the radio IDs to be programmed into the radio.
     :return: A list of fully populated dicts for writing to a CSV
     """
     channels = []
     channels_by_name = {}
-    for channel_request in channel_requests:
-        if 'R' in channel_request.keys():
-            repeater = repeaters[channel_request['R']]
-            if repeater['Mode'] == 'D':
-                make_digital_repeater_channels(channels,
-                                               channels_by_name,
-                                               repeater,
-                                               talkgroups,
-                                               channel_request,
-                                               channel_defaults,
-                                               zones)
-            elif repeater['Mode'] == 'A':
-                make_analog_repeater_channel(channels,
-                                             channels_by_name,
-                                             repeater,
-                                             channel_defaults,
-                                             zones)
-        elif 'S' in channel_request.keys():
-            simplex_name = channel_request['S']
-            simplex_channel = simplex[simplex_name]
-            if simplex_channel['Mode'] == 'A':
-                make_analog_simplex_channel(channels,
-                                            channels_by_name,
-                                            simplex_name,
-                                            simplex_channel,
-                                            channel_defaults,
-                                            zones)
-            else:
-                make_digital_simplex_channel(channels,
-                                             channels_by_name,
-                                             simplex_name,
-                                             simplex_channel,
-                                             channel_defaults,
-                                             zones)
+    for radio_id in radio_ids:
+        for channel_request in channel_requests:
+            if 'R' in channel_request.keys():
+                repeater = repeaters[channel_request['R']]
+                if repeater['Mode'] == 'D':
+                    make_digital_repeater_channels(channels,
+                                                   channels_by_name,
+                                                   repeater,
+                                                   talkgroups,
+                                                   channel_request,
+                                                   channel_defaults,
+                                                   zones,
+                                                   radio_id)
+                elif repeater['Mode'] == 'A':
+                    make_analog_repeater_channel(channels,
+                                                 channels_by_name,
+                                                 repeater,
+                                                 channel_defaults,
+                                                 zones)
+            elif 'S' in channel_request.keys():
+                simplex_name = channel_request['S']
+                simplex_channel = simplex[simplex_name]
+                if simplex_channel['Mode'] == 'A':
+                    make_analog_simplex_channel(channels,
+                                                channels_by_name,
+                                                simplex_name,
+                                                simplex_channel,
+                                                channel_defaults,
+                                                zones)
+                else:
+                    make_digital_simplex_channel(channels,
+                                                 channels_by_name,
+                                                 simplex_name,
+                                                 simplex_channel,
+                                                 channel_defaults,
+                                                 zones,
+                                                 radio_id)
     return channels, channels_by_name
 
 
@@ -288,14 +298,25 @@ def add_special_zone_members(channels, special_zones, zones):
     pass
 
 
-def insert_into_zones(channel, zones):
+def insert_into_zones(channel, zones, radio_id = None):
+    """
+    Insert each channel into a zone. For digital channels, the radio_id will
+    be used to prefix the zone name with an abbreviation indicating it
+    contains the channels for that radio_id. For analog channels, the radio_id
+    will be none.
+
+    :param channel: A channel
+    :param zones: A dict of dicts containing info about the zones.
+    :param radio_id: A radio_id dict. All we will use is the Abbrev field.
+    :return: None
+    """
     if channel['Transmit Frequency'] == channel['Receive Frequency']:
         # RX == TX: A simplex channel
         insert_into_zone(channel, 'simplex', zones)
     else:
         # All repeaters go into a zone named for the repeater.
         if channel['Channel Type'] == 'D-Digital':
-            zone_name = channel['Repeater Name']
+            zone_name = radio_id['Abbrev'] + ' ' + channel['Repeater Name']
         else:
             zone_name = channel['Channel Name']
         insert_into_zone(channel, zone_name, zones)
@@ -355,17 +376,20 @@ def main():
      special_zones,
      channel_defaults,
      field_names) = load_data_from_yaml_files()
+    """
     print("Repeaters", repeaters)
     print("Talkgroups", talkgroups)
     print("Simplex", simplex)
     print("Channel requests", channel_requests)
     print("Channel defaults", channel_defaults)
+    """
     channels, channels_by_name = make_channels(repeaters,
                                                talkgroups,
                                                simplex,
                                                channel_requests,
                                                channel_defaults,
-                                               zones)
+                                               zones,
+                                               radio_ids)
     write_dict_to_csv(channels, 'channels.csv', field_names['channels'])
     write_dict_to_csv(radio_ids, 'radio_ids.csv', field_names['radio_ids'])
     zone_list = change_zone_dict_to_list(zones)
