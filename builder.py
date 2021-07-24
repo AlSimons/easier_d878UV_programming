@@ -63,8 +63,27 @@ def load_data_from_yaml_files():
         special_zones, channel_defaults, field_names
 
 
+def fix_list_members(dict_list):
+    """
+    dict_list is a list of dicts.  Some elements of each dict may be a list.
+    Since we are writing a csv we have to flatten those lists into a scalar
+    element.  The CPS software expects the list elements to be a pipe-separated
+    single string.
+    :param dict_list: a list of dicts.
+    :return: a list of dicts, with dict members that were lists now single
+        strings with the former list elements separated by pipe.
+    """
+    for this_dict in dict_list:
+        for dict_key in this_dict.keys():
+            dict_element = this_dict[dict_key]
+            if type(dict_element) == list:
+                this_dict[dict_key] = '|'.join(dict_element)
+    return dict_list
+
+
 def write_dict_to_csv(dict_list_to_write, file_name, field_names):
     index_dict_list(dict_list_to_write)
+    fix_list_members(dict_list_to_write)
     with open(file_name, 'w', newline='') as f:
         writer = csv.DictWriter(f,
                                 fieldnames=field_names,
@@ -286,12 +305,13 @@ def insert_into_zone(channel, zone_key, zones):
     try:
         this_zone = zones[zone_key]
     except KeyError:
-        this_zone = {}
+        this_zone = {
+            'Zone Name': zone_key,
+            'Zone Channel Member': [],
+            'Zone Channel Member RX Frequency': [],
+            'Zone Channel Member TX Frequency': []
+        }
         zones[zone_key] = this_zone
-        this_zone['Zone Name'] = zone_key
-        this_zone['Zone Channel Member'] = []
-        this_zone['Zone Channel Member RX Frequency'] = []
-        this_zone['Zone Channel Member TX Frequency'] = []
     this_zone['Zone Channel Member'].append(channel['Channel Name'])
     this_zone['Zone Channel Member RX Frequency'].append(
         channel['Receive Frequency'])
@@ -305,6 +325,24 @@ def insert_into_zone(channel, zone_key, zones):
         this_zone['B Channel'] = channel['Channel Name']
         this_zone['B Channel RX Frequency'] = channel['Receive Frequency']
         this_zone['B Channel TX Frequency'] = channel['Transmit Frequency']
+
+
+def change_zone_dict_to_list(zone_dict):
+    """
+    Because we had to add channels to zones based on zone name, the zone
+    data are currently stored in a dict, with the keys being the zone name.
+    The elements of this dict are also dicts, containing all the information
+    for the zone--including the zone name.
+
+    In order to write this information to a csv, we have to convert from a
+    dict of dicts to a list of dicts, dropping the redundant outer key.
+    :param zone_dict: A dict of dicts containing zone information.
+    :return: A list of dicts containing zone information.
+    """
+    zone_list = []
+    for zone in zone_dict.keys():
+        zone_list.append(zone_dict[zone])
+    return zone_list
 
 
 def main():
@@ -323,13 +361,15 @@ def main():
     print("Channel requests", channel_requests)
     print("Channel defaults", channel_defaults)
     channels, channels_by_name = make_channels(repeaters,
-                             talkgroups,
-                             simplex,
-                             channel_requests,
-                             channel_defaults,
-                             zones)
+                                               talkgroups,
+                                               simplex,
+                                               channel_requests,
+                                               channel_defaults,
+                                               zones)
     write_dict_to_csv(channels, 'channels.csv', field_names['channels'])
     write_dict_to_csv(radio_ids, 'radio_ids.csv', field_names['radio_ids'])
+    zone_list = change_zone_dict_to_list(zones)
+    write_dict_to_csv(zone_list, 'zones.csv', field_names['zones'])
 
 
 if __name__ == "__main__":

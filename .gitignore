@@ -3,3 +3,5 @@ learn_yaml.py
 Pipfile.lock
 radio_ids.csv
 generated_channels.yaml
+channels.csv
+zones.csv
