@@ -31,6 +31,10 @@ def load_data_from_yaml_files():
         talkgroups = yaml.safe_load(f)
     with open('simplex.yaml') as f:
         simplex = yaml.safe_load(f)
+    # Simplex channels are sometimes named with their frequency, e.g., 146.52.
+    # Make sure that all keys are strings.
+    simplex = {(str(key) if not isinstance(key, str) else key): simplex[key]
+               for key in simplex.keys()}
     with open('channel_requests.yaml') as f:
         channel_requests = yaml.safe_load(f)
     with open('special_zones.yaml') as f:
@@ -92,6 +96,7 @@ def make_analog_repeater_channel(channels,
                                  channel_defaults,
                                  zones):
     channel = channel_defaults.copy()
+    channel['Repeater Name'] = repeater['Name']
     channel['Channel Name'] = repeater['Name']
     channel['Transmit Frequency'] = '{:<09}'.format(repeater['TX'])
     channel['Receive Frequency'] = '{:<09}'.format(repeater['RX'])
@@ -124,9 +129,6 @@ def make_analog_simplex_channel(channels,
                                 simplex_channel,
                                 channel_defaults,
                                 zones):
-    # Make sure the simplex name is a string, in case someone used a
-    # frequency as the name, e.g., 146.52.
-    simplex_name = str(simplex_name)
     channel = channel_defaults.copy()
     channel['Channel Name'] = simplex_name
     channel['Transmit Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
@@ -148,10 +150,14 @@ def make_digital_repeater_channel(channels,
                                   talkgroup_number,
                                   channel_defaults,
                                   zones,
-                                  radio_id):
+                                  radio_id,
+                                  single_radio_id):
     channel = channel_defaults.copy()
     channel['Repeater Name'] = repeater['Name']
-    channel['Channel Name'] = repeater['Name'] + ' ' + talkgroup
+    channel_name = repeater['Name'] + ' ' + talkgroup
+    if not single_radio_id:
+        channel_name = radio_id['Abbrev'] + ' ' + channel_name
+    channel['Channel Name'] = channel_name
     channel['Transmit Frequency'] = '{:<09}'.format(repeater['TX'])
     channel['Receive Frequency'] = '{:<09}'.format(repeater['RX'])
     channel['Channel Type'] = 'D-Digital'
@@ -167,7 +173,7 @@ def make_digital_repeater_channel(channels,
             channel['Slot'] = slot  # Choose the right slot for a static TG
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
-    insert_into_zones(channel, zones, radio_id)
+    insert_into_zones(channel, zones, radio_id, single_radio_id)
 
 
 def make_digital_repeater_channels(channels,
@@ -177,7 +183,8 @@ def make_digital_repeater_channels(channels,
                                    channel_request,
                                    channel_defaults,
                                    zones,
-                                   radio_id):
+                                   radio_id,
+                                   single_radio_id):
     for talkgroup in channel_request['T']:
         make_digital_repeater_channel(channels,
                                       channels_by_name,
@@ -186,7 +193,8 @@ def make_digital_repeater_channels(channels,
                                       talkgroups[talkgroup],
                                       channel_defaults,
                                       zones,
-                                      radio_id)
+                                      radio_id,
+                                      single_radio_id)
 
 
 def make_digital_simplex_channel(channels,
@@ -195,10 +203,10 @@ def make_digital_simplex_channel(channels,
                                  simplex_channel,
                                  channel_defaults,
                                  zones,
-                                 radio_id):
-    # Make sure the simplex name is a string, in case someone used a
-    # frequency as the name, e.g., 146.52.
-    simplex_name = str(simplex_name)
+                                 radio_id,
+                                 single_radio_id):
+    if not single_radio_id:
+        simplex_name = radio_id['Abbrev'] + ' ' + simplex_name
 
     channel = channel_defaults.copy()
     channel['Channel Name'] = simplex_name
@@ -214,7 +222,7 @@ def make_digital_simplex_channel(channels,
         channel['PTT Prohibit'] = 'On'
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
-    insert_into_zones(channel, zones, radio_id)
+    insert_into_zones(channel, zones, radio_id, single_radio_id)
 
 
 def make_channels(repeaters,
@@ -228,6 +236,7 @@ def make_channels(repeaters,
     Walks over the desired channels list specified in channel_info, and builds
     the dictionary of all the channels, ready to be written to a CSV file for
     import into the programmer.
+
     :param repeaters: A dict of repeater info
     :param talkgroups: A dict of talkgroup info
     :param simplex: A dict of simplex channels
@@ -242,6 +251,7 @@ def make_channels(repeaters,
     channels = []
     channels_by_name = {}
     for radio_id in radio_ids:
+        single_radio_id = len(radio_ids) == 1
         for channel_request in channel_requests:
             if 'R' in channel_request.keys():
                 repeater = repeaters[channel_request['R']]
@@ -253,17 +263,28 @@ def make_channels(repeaters,
                                                    channel_request,
                                                    channel_defaults,
                                                    zones,
-                                                   radio_id)
+                                                   radio_id,
+                                                   single_radio_id)
                 elif repeater['Mode'] == 'A':
+                    # Only enter analog channels once, not per-radio_id.
+                    if repeater['Name'] in channels_by_name.keys():
+                        continue
                     make_analog_repeater_channel(channels,
                                                  channels_by_name,
                                                  repeater,
                                                  channel_defaults,
                                                  zones)
+                else:
+                    raise ValueError("Repeater mode must be 'A' or 'D'.")
             elif 'S' in channel_request.keys():
                 simplex_name = channel_request['S']
+                if type(simplex_name) == float:
+                    simplex_name = str(simplex_name)
                 simplex_channel = simplex[simplex_name]
                 if simplex_channel['Mode'] == 'A':
+                    # Only enter analog channels once, not per-radio_id.
+                    if simplex_name in channels_by_name.keys():
+                        continue
                     make_analog_simplex_channel(channels,
                                                 channels_by_name,
                                                 simplex_name,
@@ -277,7 +298,8 @@ def make_channels(repeaters,
                                                  simplex_channel,
                                                  channel_defaults,
                                                  zones,
-                                                 radio_id)
+                                                 radio_id,
+                                                 single_radio_id)
     return channels, channels_by_name
 
 
@@ -291,10 +313,13 @@ def add_special_zone_members(channels_by_name, special_zones, zones, radio_ids):
             for chan in chans_for_all_zones:
                 if type(chan) == float:
                     chan = str(chan)
-                insert_into_zone(channels_by_name[chan], zone_key, zones)
+                insert_into_zone(channels_by_name[chan],
+                                 zone_key,
+                                 zones,
+                                 radio_id)
 
 
-def insert_into_zones(channel, zones, radio_id=None):
+def insert_into_zones(channel, zones, radio_id=None, single_radio_id=True):
     """
     Insert each channel into a zone. For digital channels, the radio_id will
     be used to prefix the zone name with an abbreviation indicating it
@@ -308,18 +333,17 @@ def insert_into_zones(channel, zones, radio_id=None):
     """
     if channel['Transmit Frequency'] == channel['Receive Frequency']:
         # RX == TX: A simplex channel
-        insert_into_zone(channel, 'simplex', zones)
+        insert_into_zone(channel, 'simplex', zones, radio_id, single_radio_id)
     else:
         # All repeaters go into a zone named for the repeater.
         # Fixme: This isn't terribly useful for analog repeaters.
-        if channel['Channel Type'] == 'D-Digital':
-            zone_name = radio_id['Abbrev'] + ' ' + channel['Repeater Name']
-        else:
-            zone_name = channel['Channel Name']
-        insert_into_zone(channel, zone_name, zones)
+        zone_name = channel['Repeater Name']
+        if channel['Channel Type'] == 'D-Digital' and not single_radio_id:
+            zone_name = radio_id['Abbrev'] + ' ' + zone_name
+        insert_into_zone(channel, zone_name, zones, radio_id)
 
 
-def insert_into_zone(channel, zone_key, zones):
+def insert_into_zone(channel, zone_key, zones, radio_id, single_radio_id=True):
     try:
         this_zone = zones[zone_key]
     except KeyError:
@@ -330,6 +354,10 @@ def insert_into_zone(channel, zone_key, zones):
             'Zone Channel Member TX Frequency': []
         }
         zones[zone_key] = this_zone
+
+    channel_name = channel['Channel Name']
+    if channel['Channel Type'] == 'D-Digital' and not single_radio_id:
+        channel_name = radio_id['Abbrev'] + ' ' + channel_name
 
     # Don't enter a channel already in the zone.
     if channel['Channel Name'] in this_zone['Zone Channel Member']:
