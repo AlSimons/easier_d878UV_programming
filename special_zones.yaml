@@ -6,10 +6,9 @@
 # instance to put "core" simplex channels, e.g., 146.52 and 446.0, into
 # all zones.
 
-- Name: ALL_ZONES
-  Channels:
-    - 146.52
-    - 446.0
-- Name: MP
-  Channels:
-    - Al & Kathe
+ALL_ZONES:
+  - 146.52
+  - 446.0
+MP:
+  - CCARC Blmt
+  - Al & Kathe

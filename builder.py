@@ -1,26 +1,6 @@
 import csv
 import yaml
 
-"""
-csv_field_names = ['No.', 'Channel Name', 'Receive Frequency',
-                   'Transmit Frequency', 'Channel Type', 'Transmit Power',
-                   'Band Width', 'CTCSS/DCS Decode', 'CTCSS/DCS Encode',
-                   'Contact', 'Contact Call Type', 'Contact TG/DMR ID',
-                   'Radio ID', 'Busy Lock/TX Permit', 'Squelch Mode',
-                   'Optional Signal', 'DTMF ID', '2Tone ID', '5Tone ID',
-                   'PTT ID', 'Color Code', 'Slot', 'Scan List',
-                   'Receive Group List', 'PTT Prohibit', 'Reverse',
-                   'Simplex TDMA', 'Slot Suit', 'AES Digital Encryption',
-                   'Digital Encryption', 'Call Confirmation',
-                   'Talk Around(Simplex)', 'Work Alone',
-                   'Custom CTCSS', '2TONE Decode', 'Ranging', 'Through Mode',
-                   'APRS RX', 'Analog APRS PTT Mode', 'Digital APRS PTT Mode',
-                   'APRS Report Type', 'Digital APRS Report Channel',
-                   'Correct Frequency[Hz]', 'SMS Confirmation',
-                   'Exclude channel from roaming', 'DMR MODE',
-                   'DataACK Disable', 'R5toneBot', 'R5ToneEot']
-"""
-
 
 def load_data_from_yaml_files():
     """
@@ -144,6 +124,9 @@ def make_analog_simplex_channel(channels,
                                 simplex_channel,
                                 channel_defaults,
                                 zones):
+    # Make sure the simplex name is a string, in case someone used a
+    # frequency as the name, e.g., 146.52.
+    simplex_name = str(simplex_name)
     channel = channel_defaults.copy()
     channel['Channel Name'] = simplex_name
     channel['Transmit Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
@@ -213,6 +196,10 @@ def make_digital_simplex_channel(channels,
                                  channel_defaults,
                                  zones,
                                  radio_id):
+    # Make sure the simplex name is a string, in case someone used a
+    # frequency as the name, e.g., 146.52.
+    simplex_name = str(simplex_name)
+
     channel = channel_defaults.copy()
     channel['Channel Name'] = simplex_name
     channel['Transmit Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
@@ -294,11 +281,20 @@ def make_channels(repeaters,
     return channels, channels_by_name
 
 
-def add_special_zone_members(channels, special_zones, zones):
-    pass
+def add_special_zone_members(channels_by_name, special_zones, zones, radio_ids):
+    # It is possible that a channel to be added here is already in the zone.
+    # We'll filter those out in insert_into_zone().
+    for radio_id in radio_ids:
+        # First handle the special key "ALL_ZONES":
+        chans_for_all_zones = special_zones['ALL_ZONES']
+        for zone_key in zones.keys():
+            for chan in chans_for_all_zones:
+                if type(chan) == float:
+                    chan = str(chan)
+                insert_into_zone(channels_by_name[chan], zone_key, zones)
 
 
-def insert_into_zones(channel, zones, radio_id = None):
+def insert_into_zones(channel, zones, radio_id=None):
     """
     Insert each channel into a zone. For digital channels, the radio_id will
     be used to prefix the zone name with an abbreviation indicating it
@@ -315,6 +311,7 @@ def insert_into_zones(channel, zones, radio_id = None):
         insert_into_zone(channel, 'simplex', zones)
     else:
         # All repeaters go into a zone named for the repeater.
+        # Fixme: This isn't terribly useful for analog repeaters.
         if channel['Channel Type'] == 'D-Digital':
             zone_name = radio_id['Abbrev'] + ' ' + channel['Repeater Name']
         else:
@@ -333,6 +330,11 @@ def insert_into_zone(channel, zone_key, zones):
             'Zone Channel Member TX Frequency': []
         }
         zones[zone_key] = this_zone
+
+    # Don't enter a channel already in the zone.
+    if channel['Channel Name'] in this_zone['Zone Channel Member']:
+        return
+
     this_zone['Zone Channel Member'].append(channel['Channel Name'])
     this_zone['Zone Channel Member RX Frequency'].append(
         channel['Receive Frequency'])
@@ -376,13 +378,7 @@ def main():
      special_zones,
      channel_defaults,
      field_names) = load_data_from_yaml_files()
-    """
-    print("Repeaters", repeaters)
-    print("Talkgroups", talkgroups)
-    print("Simplex", simplex)
-    print("Channel requests", channel_requests)
-    print("Channel defaults", channel_defaults)
-    """
+
     channels, channels_by_name = make_channels(repeaters,
                                                talkgroups,
                                                simplex,
@@ -390,6 +386,7 @@ def main():
                                                channel_defaults,
                                                zones,
                                                radio_ids)
+    add_special_zone_members(channels_by_name, special_zones, zones, radio_ids)
     write_dict_to_csv(channels, 'channels.csv', field_names['channels'])
     write_dict_to_csv(radio_ids, 'radio_ids.csv', field_names['radio_ids'])
     zone_list = change_zone_dict_to_list(zones)
