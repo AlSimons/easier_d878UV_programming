@@ -37,6 +37,7 @@ def load_data_from_yaml_files():
                for key in simplex.keys()}
     with open('channel_requests.yaml') as f:
         channel_requests = yaml.safe_load(f)
+    channel_requests = expand_channel_requests(channel_requests)
     with open('special_zones.yaml') as f:
         special_zones = yaml.safe_load(f)
     with open('channel_defaults.yaml') as f:
@@ -45,6 +46,41 @@ def load_data_from_yaml_files():
         field_names = yaml.safe_load(f)
     return radio_ids, repeaters, talkgroups, simplex, channel_requests, \
         special_zones, channel_defaults, field_names
+
+
+def expand_channel_requests(channel_requests):
+    # First segregate the group entries from the non-groups.
+    groups = {}
+    non_groups = []
+    for request_dict in channel_requests:
+        was_group = False
+        for k in request_dict.keys():
+            if k.startswith('GROUP_'):
+                was_group = True
+                groups[k] = request_dict[k]
+        if not was_group:
+            non_groups.append(request_dict)
+
+    # If there weren't any GROUP_xxx entries, we're done.
+    if not groups:
+        return channel_requests
+
+    # OK, we have groups.  They may or may not be used,but we have to walk all
+    # the talkgroup requests and insert the group contents in place of the
+    # group reference.
+    for request_dict in non_groups:
+        if 'T' in request_dict.keys():
+            talkgroups = request_dict['T']
+            expanded_requests = []
+            for talkgroup in talkgroups:
+                if talkgroup.startswith('GROUP_'):
+                    expanded_requests = expanded_requests + groups[talkgroup]
+                else:
+                    expanded_requests.append(talkgroup)
+        else:
+            expanded_requests.append(talkgroup)
+        request_dict['T'] = expanded_requests
+    return non_groups
 
 
 def fix_list_members(dict_list):
@@ -157,6 +193,8 @@ def make_digital_repeater_channel(channels,
     channel_name = repeater['Name'] + ' ' + talkgroup
     if not single_radio_id:
         channel_name = radio_id['Abbrev'] + ' ' + channel_name
+    # Channel names are limited to 16 characters.
+    channel_name = channel_name[:16]
     channel['Channel Name'] = channel_name
     channel['Transmit Frequency'] = '{:<09}'.format(repeater['TX'])
     channel['Receive Frequency'] = '{:<09}'.format(repeater['RX'])
@@ -303,7 +341,11 @@ def make_channels(repeaters,
     return channels, channels_by_name
 
 
-def add_special_zone_members(channels_by_name, special_zones, zones, radio_ids):
+def add_special_zone_members(channels_by_name,
+                             special_zones,
+                             zones,
+                             radio_ids,
+                             single_radio_id):
     # It is possible that a channel to be added here is already in the zone.
     # We'll filter those out in insert_into_zone().
     for radio_id in radio_ids:
@@ -316,7 +358,21 @@ def add_special_zone_members(channels_by_name, special_zones, zones, radio_ids):
                 insert_into_zone(channels_by_name[chan],
                                  zone_key,
                                  zones,
-                                 radio_id)
+                                 radio_id,
+                                 single_radio_id)
+        # Now the channels that only go into certain zones.
+        for zone_name in special_zones.keys():
+            if zone_name == 'ALL_ZONES':
+                continue
+            channel_names = special_zones[zone_name]
+            if not single_radio_id:
+                zone_name = radio_id['Abbrev'] + ' ' + zone_name
+            for channel_name in channel_names:
+                insert_into_zone(channels_by_name[channel_name],
+                                 zone_name,
+                                 zones,
+                                 radio_id,
+                                 single_radio_id)
 
 
 def insert_into_zones(channel, zones, radio_id=None, single_radio_id=True):
@@ -414,7 +470,11 @@ def main():
                                                channel_defaults,
                                                zones,
                                                radio_ids)
-    add_special_zone_members(channels_by_name, special_zones, zones, radio_ids)
+    add_special_zone_members(channels_by_name,
+                             special_zones,
+                             zones,
+                             radio_ids,
+                             len(radio_ids) == 1)
     write_dict_to_csv(channels, 'channels.csv', field_names['channels'])
     write_dict_to_csv(radio_ids, 'radio_ids.csv', field_names['radio_ids'])
     zone_list = change_zone_dict_to_list(zones)

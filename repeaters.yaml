@@ -1,7 +1,6 @@
-# MPRG MacDonald Pass UHF
+# MacDonald Pass UHF
 MP:
   Name: MP
-  Town: Helena, MT
   RX: 444.1
   TX: 449.1
   Mode: D
@@ -15,9 +14,9 @@ MP:
     2:
     - 31301
 
+# MacDonald Pass 2M
 MP2:
   Name: MP 2M
-  Town: Helena, MT
   RX: 147.1
   TX: 147.7
   Mode: D
@@ -31,9 +30,9 @@ MP2:
     2:
     - 31301
 
+# North Nills
 NH:
-  Name: NorthHil
-  Town: Helena, MT
+  Name: NoHil
   RX: 448.9
   TX: 443.9
   Mode: D
@@ -46,9 +45,10 @@ NH:
     - 8
     2:
     - 31301
+
+# Big Fork
 BF:
-  Name: BgFork
-  Town: Bigfork, MT
+  Name: BgFrk
   RX: 444.325
   TX: 449.325
   Mode: D
@@ -61,10 +61,9 @@ BF:
     2:
     - 31304
 
-
+# Boulder Hill
 BH:
-  Name: Boulder Hill
-  Town: Boulder, MT
+  Name: BldHl
   RX: 449.2
   TX: 444.2
   Mode: D
@@ -79,8 +78,7 @@ BH:
     - 31301
 
 GF:
-  Name: Great Falls
-  Town: Great Falls, MT
+  Name: GrFls
   RX: 449.2
   TX: 444.2
   Mode: D
@@ -96,8 +94,7 @@ GF:
 
 # Helena analog repeaters
 CCARC:
-  Name: CCARC Blmt
-  Town: Helena, MT
+  Name: CCARC RPT
   RX: 147.22
   TX: 147.82
   Mode: A

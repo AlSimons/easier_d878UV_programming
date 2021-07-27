@@ -9,6 +9,15 @@
 ALL_ZONES:
   - 146.52
   - 446.0
+
 MP:
-  - CCARC Blmt
+  - CCARC RPT
+  - Helena ARES
   - Al & Kathe
+  - WX1 RO
+
+NoHil:
+  - CCARC RPT
+  - Helena ARES
+  - Al & Kathe
+  - WX1 RO

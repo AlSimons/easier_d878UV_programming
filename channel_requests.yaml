@@ -1,165 +1,113 @@
-# Mac Pass repeaters
+# Groups of talkgroups
+# Groups are indicated by using the name GROUP_xxxxxx.
+#
+# When a GROUP_xxxxx name is included in the talk groups section of a
+# digital repeater's channels request, all the talk groups in that group
+# are included in that repeater's list.
+#
+# For instance, the following:
+# - GROUP_A:
+#    - B
+#    - C
+#    - D
+#
+# - R: MY_RPT
+#   T: - GROUP_A
+#
+# Is the same as specifying the talkgroups this way:
+# - R: MY_RPT
+#   T: - B
+#      - C
+#      - D
 
+- GROUP_MONTANA:
+    - MPRG1
+    - MPRG2
+    - MPRG3
+    - MPRG Cluste
+    - Local2
+    - MT SW
+    - MT Chat
+    - NoAmer
+    - WW
+- GROUP_TAC:
+    - TAC310
+    - TAC311
+    - TAC312
+    - TAC313
+    - TAC314
+    - TAC315
+    - TAC316
+    - TAC317
+    - TAC318
+    - TAC319
+
+# Mac Pass repeaters
 # Mac Pass UHF
 - R: MP
   T:
-  - MPRG1
-  - MPRG2
-  - MPRG3
-  - MPRG Cluster
-  - Local2
-  - MT SW
-  - MT Chat
-  - NoAmer
-  - WW
-  - TAC310
-  - TAC311
-  - TAC312
-  - TAC313
-  - TAC314
-  - TAC315
-  - TAC316
-  - TAC317
-  - TAC318
-  - TAC319
-  - US SAR
-  - US SAR TAC
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
 
 # Mac Pass 2M
 - R: MP2
   T:
-  - MPRG1
-  - MPRG2
-  - MPRG3
-  - MPRG Cluster
-  - Local2
-  - MT SW
-  - MT Chat
-  - NoAmer
-  - WW
-  - TAC310
-  - TAC311
-  - TAC312
-  - TAC313
-  - TAC314
-  - TAC315
-  - TAC316
-  - TAC317
-  - TAC318
-  - TAC319
-  - US SAR
-  - US SAR TAC
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
 
 # Helena North Hills
 - R: NH
   T:
-  - MPRG1
-  - MPRG2
-  - MPRG3
-  - MPRG Cluster
-  - Local2
-  - MT SW
-  - MT Chat
-  - NoAmer
-  - WW
-  - TAC310
-  - TAC311
-  - TAC312
-  - TAC313
-  - TAC314
-  - TAC315
-  - TAC316
-  - TAC317
-  - TAC318
-  - TAC319
-  - US SAR
-  - US SAR TAC
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
 
 # Boulder Hill
 - R: BH
   T:
-  - MPRG1
-  - MPRG2
-  - MPRG3
-  - MPRG Cluster
-  - Local2
-  - MT SW
-  - MT Chat
-  - NoAmer
-  - WW
-  - TAC310
-  - TAC311
-  - TAC312
-  - TAC313
-  - TAC314
-  - TAC315
-  - TAC316
-  - TAC317
-  - TAC318
-  - TAC319
-  - US SAR
-  - US SAR TAC
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
 
 # Great Falls
 - R: GF
   T:
-  - MPRG1
-  - MPRG2
-  - MPRG3
-  - MPRG Cluster
-  - Local2
-  - MT SW
-  - MT Chat
-  - NoAmer
-  - WW
-  - TAC310
-  - TAC311
-  - TAC312
-  - TAC313
-  - TAC314
-  - TAC315
-  - TAC316
-  - TAC317
-  - TAC318
-  - TAC319
-  - US SAR
-  - US SAR TAC
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
 
 # Big Fork
 - R: BF
   T:
-  - MPRG1
-  - MPRG2
-  - MPRG3
-  - MPRG Cluster
-  - Local2
-  - MT SW
-  - MT Chat
-  - NoAmer
-  - WW
-  - TAC310
-  - TAC311
-  - TAC312
-  - TAC313
-  - TAC314
-  - TAC315
-  - TAC316
-  - TAC317
-  - TAC318
-  - TAC319
-  - US SAR
-  - US SAR TAC
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
 
 # Helena analog repeaters
 - R: CCARC
 
 # Analog Simplex channels
-- S: 146.52 A
-- S: 446.0 A
-- S: 146.55 A
-- S: Al & Kathe A
-- S: Quartzfest A
-- S: Helena ARES A
+- S: 146.52
+- S: 446.0
+- S: 146.55
+- S: Al & Kathe
+- S: Quartzfest
+- S: Helena ARES
+- S: APRS
 
 # Digital Simplex channels
 - S: Simp 1D 145.79

@@ -30,6 +30,9 @@ Quartzfest:
 Helena ARES:
   Freq: 147.5
   Mode: A
+APRS:
+  Freq: 144.39
+  Mode: A
 
 # Digital
 Simp 1D 145.79:
