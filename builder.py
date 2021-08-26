@@ -68,8 +68,13 @@ def expand_channel_requests(channel_requests):
     # OK, we have groups.  They may or may not be used,but we have to walk all
     # the talkgroup requests and insert the group contents in place of the
     # group reference.
+    expanded_requests = []
     for request_dict in non_groups:
         if 'T' in request_dict.keys():
+            # The request has talk groups.  They may be groups of groups, and
+            # need expanding.
+            # Note that if there are no talk groups in the request (not T key),
+            # we don't need to do anything.
             talkgroups = request_dict['T']
             expanded_requests = []
             for talkgroup in talkgroups:
@@ -77,9 +82,8 @@ def expand_channel_requests(channel_requests):
                     expanded_requests = expanded_requests + groups[talkgroup]
                 else:
                     expanded_requests.append(talkgroup)
-        else:
-            expanded_requests.append(talkgroup)
-        request_dict['T'] = expanded_requests
+            request_dict['T'] = expanded_requests
+
     return non_groups
 
 
@@ -124,6 +128,40 @@ def index_dict_list(dictionary_list):
     """
     for i, row in enumerate(dictionary_list):
         row["No."] = str(i + 1)
+
+
+def make_talkgroup_file(talkgroups):
+    """
+    The 878 requires duplicate information in multiple tables.  In the
+    channels table, it requires the talkgroup name and number, but those are
+    ignored if the talkgroup name and number are not also in the talkgroups
+    table.
+
+    This routine outputs the talkgroups.csv file, sorted by talkgroup name.
+    :param talkgroups: the dict of talkgroups as read from the talkgroups
+        YAML file. Most values are scalars, but for Private Call talkgroups,
+        the value is itself a dict.
+    :return: None
+    """
+    tg_keys = sorted(talkgroups.keys())
+    # Need to turn this into a list of dicts, with the columns that AnyTone CPS
+    # wants
+    tg_list = []
+    for tg_key in tg_keys:
+        tg_value = talkgroups[tg_key]
+        # Assume Group Call; we'll overwrite if not.
+        tg = {'Name': tg_key, 'Call Type': 'Group Call', 'Call Alert': 'None'}
+        if type(tg_value) == int:
+            tg['Radio ID'] = tg_value
+        elif type(tg_value) == dict:
+            if tg_value['Private']:
+                tg['Call Type'] = 'Private Call'
+            tg['Radio ID'] = tg_value['Number']
+        tg_list.append(tg)
+
+    # Now write it out.
+    field_names = ['No.', "Radio ID", "Name", "Call Type", "Call Alert"]
+    write_dict_to_csv(tg_list, 'talkgroups.csv', field_names)
 
 
 def make_analog_repeater_channel(channels,
@@ -202,6 +240,10 @@ def make_digital_repeater_channel(channels,
     channel['Band Width'] = '12.5K'
     channel['Color Code'] = repeater['CC']
     channel['Contact'] = talkgroup
+    if type(talkgroup_number) == dict:
+        if talkgroup_number['Private']:
+            channel['Contact Call Type'] = 'Private'
+        talkgroup_number = talkgroup_number['Number']
     channel['Contact TG/DMR ID'] = talkgroup_number
     channel['Radio ID'] = radio_id['Name']
     # Assume the TG is dynamic.  We'll fix it if it is static
@@ -368,11 +410,24 @@ def add_special_zone_members(channels_by_name,
             if not single_radio_id:
                 zone_name = radio_id['Abbrev'] + ' ' + zone_name
             for channel_name in channel_names:
-                insert_into_zone(channels_by_name[channel_name],
-                                 zone_name,
-                                 zones,
-                                 radio_id,
-                                 single_radio_id)
+                try:
+                    insert_into_zone(channels_by_name[channel_name],
+                                     zone_name,
+                                     zones,
+                                     radio_id,
+                                     single_radio_id)
+                except KeyError:
+                    # If we have a key error, the most likely reason is that
+                    # we're having multiple radio IDs, and the channel name
+                    # in the special zones dict doesn't have a prefixed
+                    # radio ID abbreviation.  Try adding it.  If we still get
+                    # a key error, fail.
+                    channel_name = radio_id['Abbrev'] + ' ' + channel_name
+                    insert_into_zone(channels_by_name[channel_name],
+                                     zone_name,
+                                     zones,
+                                     radio_id,
+                                     single_radio_id)
 
 
 def insert_into_zones(channel, zones, radio_id=None, single_radio_id=True):
@@ -462,6 +517,8 @@ def main():
      special_zones,
      channel_defaults,
      field_names) = load_data_from_yaml_files()
+
+    make_talkgroup_file(talkgroups)
 
     channels, channels_by_name = make_channels(repeaters,
                                                talkgroups,
