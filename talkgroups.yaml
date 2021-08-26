@@ -13,6 +13,9 @@ Local2: 2
 MT SW: 3130
 MT Chat: 31300
 
+# Disconnect
+TG DISC: 4000
+
 # Emergency
 US SAR: 31681
 US SAR TAC: 31682
@@ -20,6 +23,11 @@ US SAR TAC: 31682
 # Wide Area
 NoAmer: 93
 WW: 91
+
+# Parrot  NOTE: PRIVATE CALL, notice different format of YAML
+PARROT:
+  Number: 9990
+  Private: True
 
 # TAC Channels
 TAC310: 310
@@ -33,7 +41,3 @@ TAC317: 317
 TAC318: 318
 TAC319: 319
 
-# Parrot  NOTE: PRIVATE CALL, notice different format of YAML
-PARROT:
-  Number: 9990
-  Private: True
