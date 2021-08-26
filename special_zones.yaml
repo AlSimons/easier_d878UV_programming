@@ -9,6 +9,24 @@
 ALL_ZONES:
   - 146.52
   - 446.0
+  - APRS
+
+HELENA:
+  - MP MPRG1
+  - MP 2M MPRG1
+  - NoHil MPRG1
+  - BldHl MPRG1
+  - CCARC RPT
+  - NorHils A
+  - Hogback 5.45
+  - Hogback 6.85
+  - Helena 7.32
+  - Helena 443.0
+  - "146.52"
+  - "446.0"
+  - Helena ARES
+  - Al & Kathe
+  - WX1 RO
 
 MP:
   - CCARC RPT
