@@ -24,12 +24,13 @@
     - MPRG1
     - MPRG2
     - MPRG3
-    - MPRG Cluste
+    - MPRG Cluster
     - Local2
     - MT SW
     - MT Chat
     - NoAmer
     - WW
+
 - GROUP_TAC:
     - TAC310
     - TAC311
@@ -88,6 +89,15 @@
     - US SAR TAC
     - PARROT
 
+- R: GF2
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+
 # Big Fork
 - R: BF
   T:
@@ -97,8 +107,177 @@
     - US SAR TAC
     - PARROT
 
+# Big Sky / Lone Mountain
+- R: BSLM
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Billings
+- R: BIL
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Bozeman
+- R: BZ1
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+- R: BZ2
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+- R: BZ3
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+- R: BZ4
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Butte
+- R: BUTTE
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Dillon
+- R: DLN
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Eureka
+- R: EUR
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Hamilton
+- R: HAM
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Missoula
+- R: MISS
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Toston
+- R: TO
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Lookout Pass
+- R: LP
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Kimberly, BC
+- R: KBC
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Albuquerque
+- R: ABQ
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Santa Fe, NM
+- R: SFNM
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Torrence County, NM
+- R: TNM
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - US SAR
+    - US SAR TAC
+    - PARROT
+
+# Cibola County, NM
+- R: CNM
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
+    - PARROT
+    - US SAR
+    - US SAR TAC
+
 # Helena analog repeaters
 - R: CCARC
+- R: North Hills
+- R: Hogback1
+- R: Hogback2
+- R: Helena1
+- R: Helena2
+- R: Butte1
+- R: Butte2
+- R: Butte3
+- R: Butte4
+- R: Boulder
 
 # Analog Simplex channels
 - S: 146.52
@@ -127,3 +306,4 @@
 - S: WX5 RO
 - S: WX6 RO
 - S: WX7 RO
+

@@ -1,3 +1,4 @@
+# Montana repeaters
 # MacDonald Pass UHF
 MP:
   Name: MP
@@ -11,6 +12,7 @@ MP:
     - 31302
     - 31303
     - 8
+    # 3130, but only Saturday 1900 - 2000
     2:
     - 31301
 
@@ -30,7 +32,7 @@ MP2:
     2:
     - 31301
 
-# North Nills
+# North Hills
 NH:
   Name: NoHil
   RX: 448.9
@@ -77,6 +79,22 @@ BH:
     2:
     - 31301
 
+# Boulder City
+BC:
+  Name: BldCt
+  RX: 444.85
+  TX: 449.85
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+    - 31301
+    - 31305
+    2:
+    - 31304
+
+# Great Falls
 GF:
   Name: GrFls
   RX: 449.2
@@ -91,6 +109,301 @@ GF:
     2:
     - 31301
 
+GF2:
+  Name: GrFl2
+  RX: 146.8
+  TX: 146.2
+  Mode: D
+  CC: 2
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+    - 3130
+    2:
+    - 31301
+
+# Big Sky / Lone Mountain
+BSLM:
+  Name: BSLM
+  RX: 447.0
+  TX: 442.0
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+    - 3130
+    - 31301
+    2:
+    - 31303
+
+# Billings
+BIL:
+  Name: Blngs
+  RX: 448.65
+  TX: 443.65
+  Mode: D
+  CC: 1
+  DynamicTGs: 1 # ??? FIXME
+  StaticTGs:
+    1:
+      -   #  Fiction; none listed.
+    2:
+      - 31301
+
+# Bozeman
+BZ1:
+  Name: Bzmn1
+  RX: 449.5
+  TX: 444.5
+  Mode: D
+  CC: 1
+  DynamicTGs: 1 #??? FIXME
+  StaticTGs:
+    1:
+      - 3130
+      - 31301
+    2:
+      - 31303
+
+BZ2:
+  Name: Bzmn2
+  RX: 449.9
+  TX: 444.9
+  Mode: D
+  CC: 1
+  DynamicTGs: 1 #??? FIXME
+  StaticTGs:
+    1:
+      - 3130
+      - 31301
+    2:
+      - 31303
+
+BZ3:
+  Name: Bzmn3
+  RX: 448.35
+  TX: 443.35
+  Mode: D
+  CC: 1
+  DynamicTGs: 1 # ??? FIXME
+  StaticTGs:
+    1:
+      - 3130
+      - 31301
+      - 91
+    2:
+      - 31303
+
+BZ4:
+  Name: Bzmn4
+  RX: 447.95
+  TX: 442.95
+  Mode: D
+  CC: 1
+  DynamicTGs: 1  # ??? FIXME
+  StaticTGs:
+    1:
+      - 3130
+      - 31300
+      - 31301
+    2:
+      - 31303
+
+# Butte
+BUTTE:
+  Name: Butte
+  RX: 444.0
+  TX: 449.0
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 3130
+      - 31301
+    2:
+      - 31303
+
+# Dillon
+DLN:
+  Name:  Dilln
+  RX: 444.1
+  TX: 449.1
+  Mode: D
+  CC: 2
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 8
+    2:
+      - 31301
+
+# Eureka
+EUR:
+  Name: Eurka
+  RX: 444.725
+  TX: 449.725
+  Mode: D
+  CC: 6
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 311464
+    2:
+      - 31301
+      - 31304
+
+# Hamilton -- Seems to be a public safety repeater.
+HAM:
+  Name: Hamtn
+  RX: 422.025
+  TX: 429.025
+  Mode: D
+  CC: 1
+  DynamicTGs: 1 #??? FIXME
+  StaticTGs:
+    1:
+      - 9911
+      - 31013
+      - 31089
+      - 31623
+      - 31677
+      - 314710
+    2:
+      - 3130
+      - 31229
+      - 31305
+
+# Missoula
+MISS:
+  Name: Misla
+  RX: 448.9
+  TX: 443.9
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 31303
+      - 8
+      -
+    2:
+      - 31301
+
+# Toston
+TO:
+  Name: Tostn
+  RX: 449.3
+  TX: 444.3
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 31303
+      - 8
+    2:
+      - 31301
+
+# Lookout Pass
+LP:
+  Name: LkPas
+  RX: 444.2
+  TX: 449.2
+  Mode: D
+  CC: 2
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 31303
+      - 8
+    2:
+      - 31301
+
+# Kimberly, BC
+KBC:
+  Name: KimBC
+  RX: 443.75
+  TX: 448.75
+  Mode: D
+  CC: 1
+  DynamicTGs: 2
+  StaticTGs:
+    1:
+      - 30271
+    2:
+      - 3153
+      - 31301
+      - 3130
+
+# Albuquerque, NM
+ABQ:
+  Name: Albqe
+  RX: 443.3
+  TX: 448.3
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+
+# Torrence County, NM
+TNM:
+  Name: TorNM
+  RX: 443.25
+  TX: 448.25
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+
+# Cibola County, NM
+CNM:
+  Name: CibNM
+  RX: 443.35
+  TX: 448.35
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+
+# Santa Fe, NM
+SFNM:
+  Name: SanFe
+  RX: 443.15
+  TX: 448.15
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+
 
 # Helena analog repeaters
 CCARC:
@@ -99,3 +412,80 @@ CCARC:
   TX: 147.82
   Mode: A
   CTCSS: 100.0
+
+North Hills:
+  Name: NorHils A
+  RX: 449.55
+  TX: 444.55
+  Mode: A
+
+Hogback1:
+  Name: Hogback 5.45
+  RX: 145.45
+  TX: 144.85
+  Mode: A
+  CTCSS: 100.0
+
+Hogback2:
+  Name: Hogback 6.85
+  RX: 146.85
+  TX: 146.25
+  Mode: A
+  CTCSS: 146.2
+
+Helena1:
+  Name: Helena 7.32
+  RX: 147.32
+  TX: 147.92
+  Mode: A
+
+Helena2:
+  Name: Helena 443.0
+  RX: 443.0
+  TX: 448.0
+  Mode: A
+
+# Butte Analog
+Butte1:
+  Name: Butte 4.50
+  RX: 144.50
+  TX: 147.50
+  Mode: A
+  CTCSS: 107.2
+
+Butte2:
+  Name: Butte 6.94
+  RX: 146.94
+  TX: 146.34
+  Mode: A
+  CTCSS: 100.0
+
+Butte3:
+  Name: Butte 7.02
+  RX: 147.02
+  TX: 147.62
+  Mode: A
+  CTCSS: 107.2
+
+Butte4:
+  Name: Butte 449.4
+  RX: 449.40
+  TX: 444.40
+  Mode: A
+  CTCSS: 131.8
+
+Boulder:
+  Name: Boulder 6.70
+  RX: 146.70
+  TX: 146.10
+  Mode: A
+  CTCSS: 162.2
+
+#:
+#  Name:
+#  RX:
+#  TX:
+#  Mode: A
+#  CTCSS:
+
+
