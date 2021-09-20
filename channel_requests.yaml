@@ -279,6 +279,21 @@
 - R: Butte4
 - R: Boulder
 
+# Trip analog repeaters
+- R: Superior
+- R: Coeur
+- R: Sandpt1
+- R: Sandpt2
+- R: Sndpt41
+- R: Sndpt42
+- R: Bonners1
+- R: Bonners2
+- R: Bonn440
+- R: Creston
+- R: Nelson1
+- R: Nelson2
+- R: Nelson440
+
 # Analog Simplex channels
 - S: 146.52
 - S: 446.0
