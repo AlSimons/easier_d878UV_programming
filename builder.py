@@ -176,7 +176,7 @@ def make_analog_repeater_channel(channels,
     channel['Receive Frequency'] = '{:<09}'.format(repeater['RX'])
     channel['Channel Type'] = 'A-Analog'
     channel['Band Width'] = '25K'
-    channel['Busy Lock/TX Permit'] = 'Busy'
+    channel['Busy Lock/TX Permit'] = 'Off'
 
     keys = repeater.keys()
     # Can't specify both CTCSS (both dirs) and either RCTCSS or TCTCSS
@@ -209,7 +209,7 @@ def make_analog_simplex_channel(channels,
     channel['Receive Frequency'] = '{:<09}'.format(simplex_channel['Freq'])
     channel['Channel Type'] = 'A-Analog'
     channel['Band Width'] = '25K'
-    channel['Busy Lock/TX Permit'] = 'Busy'
+    channel['Busy Lock/TX Permit'] = 'Off'
     if 'RO' in simplex_channel.keys() and simplex_channel['RO']:
         channel['PTT Prohibit'] = 'On'
     channels.append(channel)
@@ -395,7 +395,7 @@ def add_special_zone_members(channels_by_name,
         chans_for_all_zones = special_zones['ALL_ZONES']
         for zone_key in zones.keys():
             for chan in chans_for_all_zones:
-                if type(chan) == float:
+                if type(chan) != str:
                     chan = str(chan)
                 insert_into_zone(channels_by_name[chan],
                                  zone_key,
@@ -449,9 +449,14 @@ def insert_into_zones(channel, zones, radio_id=None, single_radio_id=True):
         # All repeaters go into a zone named for the repeater.
         # Fixme: This isn't terribly useful for analog repeaters.
         zone_name = channel['Repeater Name']
-        if channel['Channel Type'] == 'D-Digital' and not single_radio_id:
-            zone_name = radio_id['Abbrev'] + ' ' + zone_name
-        insert_into_zone(channel, zone_name, zones, radio_id)
+        if channel['Channel Type'] != 'D-Digital':
+            # This is an analog repeater.
+            insert_into_zone(channel, 'Ana Rptrs', zones, radio_id,
+                             single_radio_id)
+        else:
+            if not single_radio_id:
+                zone_name = radio_id['Abbrev'] + ' ' + zone_name
+            insert_into_zone(channel, zone_name, zones, radio_id)
 
 
 def insert_into_zone(channel, zone_key, zones, radio_id, single_radio_id=True):
