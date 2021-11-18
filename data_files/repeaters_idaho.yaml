@@ -1,0 +1,55 @@
+Bonners1:
+  Name: Bonners 1
+  RX: 146.96
+  TX: 146.36
+  Mode: A
+  CTCSS: 123.0
+
+Bonners2:
+  Name: Bonners 2
+  RX: 147.04
+  TX: 147.64
+  Mode: A
+  CTCSS: 100.0
+
+Bonn440:
+  Name: Bonn 440
+  RX: 443.025
+  TX: 448.025
+  Mode: A
+  CTCSS: 100.0
+
+Sandpt1:
+  Name: Sandpt 1
+  RX: 145.27
+  TX: 144.67
+  Mode: A
+  CTCSS: 127.3
+
+Sandpt2:
+  Name: Sandpt 2
+  RX: 145.49
+  TX: 144.89
+  Mode: A
+  CTCSS: 136.5
+
+Sndpt41:
+  Name: Sndpt 41
+  RX: 442.5
+  TX: 447.5
+  Mode: A
+  CTCSS: 131.8
+
+Sndpt42:
+  Name: Sndpt 42
+  RX: 448.375
+  TX: 443.375
+  Mode: A
+
+Coeur:
+  Name: Coeur
+  RX: 443.975
+  TX: 448.975
+  Mode: A
+  CTCSS: 136.5
+

@@ -1,0 +1,43 @@
+# Kimberly, BC
+KBC:
+  Name: KimBC
+  RX: 443.75
+  TX: 448.75
+  Mode: D
+  CC: 1
+  DynamicTGs: 2
+  StaticTGs:
+    1:
+      - 30271
+    2:
+      - 3153
+      - 31301
+      - 3130
+
+Nelson1:
+  Name: Nelson 1
+  RX: 146.64
+  TX: 146.04
+  Mode: A
+  CTCSS: 100.0
+
+Nelson2:
+  Name: Nelson 2
+  RX: 147.06
+  TX: 147.66
+  Mode: A
+  CTCSS: 100.0
+
+Nelson440:
+  Name: Nelson 440
+  RX: 444.55
+  TX: 449.55
+  Mode: A
+
+Creston:
+  Name: Creston
+  RX: 146.8
+  TX: 146.2
+  Mode: A
+  CTCSS: 88.5
+

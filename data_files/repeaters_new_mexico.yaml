@@ -1,0 +1,64 @@
+# Cibola County, NM
+CNM:
+  Name: CibNM
+  RX: 443.35
+  TX: 448.35
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+
+# Santa Fe, NM
+SFNM:
+  Name: SanFe
+  RX: 443.15
+  TX: 448.15
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+
+# Torrence County, NM
+TNM:
+  Name: TorNM
+  RX: 443.25
+  TX: 448.25
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+
+# Albuquerque, NM
+ABQ:
+  Name: Albqe
+  RX: 443.3
+  TX: 448.3
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 31302
+      - 3135
+      - 8
+    2:
+      - 31301
+

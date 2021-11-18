@@ -6,7 +6,7 @@ def load_data_from_yaml_files():
     """
     Loads data from
         - radio_ids.yaml,
-        - repeaters.yaml,
+        - repeaters*.yaml,
         - talkgroups.yaml,
         - simplex.yaml, and
         - channel_requests.yaml,
@@ -35,14 +35,14 @@ def load_data_from_yaml_files():
     # Make sure that all keys are strings.
     simplex = {(str(key) if not isinstance(key, str) else key): simplex[key]
                for key in simplex.keys()}
-    with open('channel_requests.yaml') as f:
+    with open('../data_files/channel_requests.yaml') as f:
         channel_requests = yaml.safe_load(f)
     channel_requests = expand_channel_requests(channel_requests)
     with open('special_zones.yaml') as f:
         special_zones = yaml.safe_load(f)
-    with open('channel_defaults.yaml') as f:
+    with open('../data_files/channel_defaults.yaml') as f:
         channel_defaults = yaml.safe_load(f)
-    with open('field_names.yaml') as f:
+    with open('../data_files/field_names.yaml') as f:
         field_names = yaml.safe_load(f)
     return radio_ids, repeaters, talkgroups, simplex, channel_requests, \
         special_zones, channel_defaults, field_names
