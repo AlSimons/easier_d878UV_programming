@@ -1,5 +1,7 @@
 import csv
 import yaml
+from glob import glob
+from repeaters_from_repeaterbook import get_analog_repeaters_from_repeaterbook
 
 
 def load_data_from_yaml_files():
@@ -13,6 +15,7 @@ def load_data_from_yaml_files():
         - special_zones.yaml,
         - channel_defaults.yaml,
         - field_names.yaml
+        - lat_long.yaml
     :return: Dicts:
                radio_ids,
                repeaters,
@@ -22,30 +25,35 @@ def load_data_from_yaml_files():
                special_zones,
                channel_defaults
                field_names
+               lat_long
     """
-    with open('radio_ids.yaml') as f:
+    with open('data_files/radio_ids.yaml') as f:
         radio_ids = yaml.safe_load(f)
-    with open('repeaters.yaml') as f:
-        repeaters = yaml.safe_load(f)
-    with open('talkgroups.yaml') as f:
+    repeaters = {}
+    for fn in glob('data_files/repeaters*'):
+        with open(fn) as f:
+            repeaters.update(yaml.safe_load(f))
+    with open('data_files/talkgroups.yaml') as f:
         talkgroups = yaml.safe_load(f)
-    with open('simplex.yaml') as f:
+    with open('data_files/simplex.yaml') as f:
         simplex = yaml.safe_load(f)
     # Simplex channels are sometimes named with their frequency, e.g., 146.52.
     # Make sure that all keys are strings.
     simplex = {(str(key) if not isinstance(key, str) else key): simplex[key]
                for key in simplex.keys()}
-    with open('../data_files/channel_requests.yaml') as f:
+    with open('data_files/channel_requests.yaml') as f:
         channel_requests = yaml.safe_load(f)
     channel_requests = expand_channel_requests(channel_requests)
-    with open('special_zones.yaml') as f:
+    with open('data_files/special_zones.yaml') as f:
         special_zones = yaml.safe_load(f)
-    with open('../data_files/channel_defaults.yaml') as f:
+    with open('data_files/channel_defaults.yaml') as f:
         channel_defaults = yaml.safe_load(f)
-    with open('../data_files/field_names.yaml') as f:
+    with open('data_files/field_names.yaml') as f:
         field_names = yaml.safe_load(f)
+    with open('data_files/lat_long.yaml') as f:
+        lat_long = yaml.safe_load(f)
     return radio_ids, repeaters, talkgroups, simplex, channel_requests, \
-        special_zones, channel_defaults, field_names
+        special_zones, channel_defaults, field_names, lat_long
 
 
 def expand_channel_requests(channel_requests):
@@ -194,7 +202,67 @@ def make_analog_repeater_channel(channels,
 
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
-    insert_into_zones(channel, zones)
+    try:
+        state = repeater['State']
+    except KeyError:
+        # Use the generic "Ana Rptrs"
+        state = 'Ana Rptrs'
+    insert_into_zones(channel, zones, state=state)
+
+
+def make_analog_repeater_from_repeaterbook_channels(repeaters,
+                                                    channels,
+                                                    channels_by_name,
+                                                    channel_defaults,
+                                                    zones):
+    """
+    This is a special channel making routine for repeaters we have mass
+    harvested from Repeaterbook based on geography.
+
+    We need this special routine because normal channel generation is based
+    on channel_requests.yaml, and we don't want to have to create special
+    requests (just a single line, but still) for the scraped repeaters, which
+    may number in the hundreds. So...
+    :param repeaters: A LIST (not dict) of repeaters
+    :param channels: the channels list, already populated from the yaml files.
+    :param channels_by_name: The channels_by_name dict.
+    :param channel_defaults: The dict of default channel settings.
+    :param zones: The zones list
+    :return: The channels dict, the channels_by_name dict.
+    """
+    for repeater in repeaters:
+        channel = channel_defaults.copy()
+        channel['Repeater Name'] = repeater['Name']
+        channel['Channel Name'] = repeater['Name']
+        channel['Transmit Frequency'] = '{:<09}'.format(repeater['TX'])
+        channel['Receive Frequency'] = '{:<09}'.format(repeater['RX'])
+        channel['Channel Type'] = 'A-Analog'
+        channel['Band Width'] = '25K'
+        channel['Busy Lock/TX Permit'] = 'Off'
+
+        keys = repeater.keys()
+        # Can't specify both CTCSS (both dirs) and either RCTCSS or TCTCSS
+        if 'CTCSS' in keys and ('RCTCSS' in keys or 'TCTCSS' in keys):
+            raise KeyError
+        if 'CTCSS' in keys:
+            channel["CTCSS/DCS Decode"] = repeater['CTCSS']
+            channel["CTCSS/DCS Encode"] = repeater['CTCSS']
+        if 'RCTCSS' in keys:
+            channel["CTCSS/DCS Encode"] = repeater['RCTCSS']
+        if 'TCTCSS' in keys:
+            channel["CTCSS/DCS Decode"] = repeater['TCTCSS']
+        if 'RO' in keys and repeater['RO']:
+            channel['PTT Prohibit'] = 'True'
+
+        channels.append(channel)
+        channels_by_name[channel['Channel Name']] = channel
+        try:
+            state = repeater['State']
+        except KeyError:
+            # Use the generic "Ana Rptrs"
+            state = 'Ana Rptrs'
+        insert_into_zones(channel, zones, state=state)
+    return channels, channels_by_name
 
 
 def make_analog_simplex_channel(channels,
@@ -246,11 +314,23 @@ def make_digital_repeater_channel(channels,
         talkgroup_number = talkgroup_number['Number']
     channel['Contact TG/DMR ID'] = talkgroup_number
     channel['Radio ID'] = radio_id['Name']
+
     # Assume the TG is dynamic.  We'll fix it if it is static
-    channel['Slot'] = repeater['DynamicTGs']
-    for slot in [1, 2]:
-        if talkgroup_number in repeater['StaticTGs'][slot]:
-            channel['Slot'] = slot  # Choose the right slot for a static TG
+    try:
+        channel['Slot'] = repeater['DynamicTGs']
+    except KeyError:
+        # Didn't find a preferred slot for dynamic TGs. Assume 1, that seems
+        # pretty standard.
+        channel['Slot'] = 1
+
+    try:
+        for slot in [1, 2]:
+            if talkgroup_number in repeater['StaticTGs'][slot]:
+                channel['Slot'] = slot  # Choose the right slot for a static TG
+    except KeyError:
+        # No static TGs for this slot (or at all)... Move along
+        pass
+
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
     insert_into_zones(channel, zones, radio_id, single_radio_id)
@@ -430,7 +510,8 @@ def add_special_zone_members(channels_by_name,
                                      single_radio_id)
 
 
-def insert_into_zones(channel, zones, radio_id=None, single_radio_id=True):
+def insert_into_zones(channel, zones, radio_id=None, state='Ana Rptrs',
+                      single_radio_id=True):
     """
     Insert each channel into a zone. For digital channels, the radio_id will
     be used to prefix the zone name with an abbreviation indicating it
@@ -440,20 +521,23 @@ def insert_into_zones(channel, zones, radio_id=None, single_radio_id=True):
     :param channel: A channel
     :param zones: A dict of dicts containing info about the zones.
     :param radio_id: A radio_id dict. All we will use is the Abbrev field.
+    :param state: The US State (or other geographic region) in which the
+        repeater is located.
+    :param single_radio_id:True if this radio has a single DMR ID. If false,
+        zone names
     :return: None
     """
     if channel['Transmit Frequency'] == channel['Receive Frequency']:
         # RX == TX: A simplex channel
         insert_into_zone(channel, 'simplex', zones, radio_id, single_radio_id)
     else:
-        # All repeaters go into a zone named for the repeater.
-        # Fixme: This isn't terribly useful for analog repeaters.
-        zone_name = channel['Repeater Name']
         if channel['Channel Type'] != 'D-Digital':
-            # This is an analog repeater.
-            insert_into_zone(channel, 'Ana Rptrs', zones, radio_id,
+            # This is an analog repeater. If specified with a state, put into
+            # a zone with the state name.  Otherwise, in the generic "Ana Rptrs"
+            insert_into_zone(channel, state, zones, radio_id,
                              single_radio_id)
         else:
+            zone_name = channel['Repeater Name']
             if not single_radio_id:
                 zone_name = radio_id['Abbrev'] + ' ' + zone_name
             insert_into_zone(channel, zone_name, zones, radio_id)
@@ -521,7 +605,10 @@ def main():
      channel_requests,
      special_zones,
      channel_defaults,
-     field_names) = load_data_from_yaml_files()
+     field_names,
+     lat_long) = load_data_from_yaml_files()
+
+    analog_repeaters = get_analog_repeaters_from_repeaterbook(lat_long)
 
     make_talkgroup_file(talkgroups)
 
@@ -532,6 +619,14 @@ def main():
                                                channel_defaults,
                                                zones,
                                                radio_ids)
+
+    channels, channels_by_name = \
+        make_analog_repeater_from_repeaterbook_channels(analog_repeaters,
+                                                        channels,
+                                                        channels_by_name,
+                                                        channel_defaults,
+                                                        zones)
+
     add_special_zone_members(channels_by_name,
                              special_zones,
                              zones,

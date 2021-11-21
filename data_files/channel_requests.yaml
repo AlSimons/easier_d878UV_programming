@@ -35,13 +35,21 @@
     - TAC310
     - TAC311
     - TAC312
-    - TAC313
-    - TAC314
-    - TAC315
-    - TAC316
-    - TAC317
-    - TAC318
-    - TAC319
+#    - TAC313
+#    - TAC314
+#    - TAC315
+#    - TAC316
+#    - TAC317
+#    - TAC318
+#    - TAC319
+
+- GROUP_COLORADO:
+    - CO SW
+    - CO Chat
+    - CO SvWX
+    - CentrRgn
+    - RkyMtnWide
+    - EColo
 
 # Mac Pass repeaters
 # Mac Pass UHF
@@ -265,6 +273,117 @@
     - PARROT
     - US SAR
     - US SAR TAC
+
+# Idaho Falls, ID
+- R: IdahoFalls
+  T:
+    - GROUP_MONTANA
+    - ID SW
+    - SE ID
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Malad City, ID
+- R: Malad
+  T:
+    - GROUP_MONTANA
+    - ID SW
+    - SE ID
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Driggs ID
+- R: Driggs
+  T:
+    - GROUP_MONTANA
+    - ID SW
+    - SE ID
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Grand Mesa, CO
+- R: GrJunc
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# SquawMtn, CO
+- R: SquawMtn
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Vail, CO
+- R: Vail
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Breckenridge
+- R: Brekrdg
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Denver
+- R: Denver
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Evergreen, CO
+- R: Evrgrn
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Golden, CO
+- R: Golden
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Centennial, CO
+- R: Centenl
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Genoa, CO
+- R: Genoa
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
 
 # Helena analog repeaters
 - R: CCARC

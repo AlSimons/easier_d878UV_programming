@@ -1,0 +1,94 @@
+GrJunc:
+  Name: GrJunc
+  RX: 445.05
+  TX: 440.05
+  Mode: D
+  CC: 7
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 700
+    2:
+      - 720
+
+SquawMtn:
+  Name: SquawMtn
+  RX: 145.175
+  TX: 144.575
+  Mode: D
+  CC: 7
+  DynamicTGs: 1
+  StaticTGs:
+    1:
+      - 700
+    2:
+      - 705
+
+Vail:
+  Name: Vail
+  RX: 445.075
+  TX: 440.075
+  Mode: D
+  CC: 7
+
+Brekrdg:
+  Name: Brekrdg
+  RX: 445.0875
+  TX: 440.0875
+  Mode: D
+  CC: 7
+
+Denver:
+  Name: Denver
+  RX: 446.7875
+  TX: 441.7875
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:
+    2:
+      - 310805
+
+Evrgrn:
+  Name: Evrgrn
+  RX: 145.175
+  TX: 144.575
+  Mode: D
+  CC: 7
+  StaticTGs:
+    1:
+      - 700
+    2:
+      - 705
+
+Golden:
+  Name: Golden
+  RX: 145.37
+  TX: 144.77
+  Mode: D
+  CC: 7
+  StaticTGs:
+    1:
+      - 700
+    2:
+      - 705
+
+Centenl:
+  Name: Centenl
+  RX: 147.315
+  TX: 147.915
+  Mode: D
+  CC: 1
+
+Genoa:
+  Name: Genoa
+  RX: 446.7375
+  TX: 441.7375
+  Mode: D
+  CC: 8
+  StaticTGs:
+    1:
+      - 700
+    2:
+      - 720
+

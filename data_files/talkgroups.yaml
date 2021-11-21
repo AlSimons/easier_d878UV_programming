@@ -13,6 +13,18 @@ Local2: 2
 MT SW: 3130
 MT Chat: 31300
 
+# Idaho
+ID SW: 3116
+SE ID: 31167
+
+# Colorado
+CO SW: 3108
+CO Chat: 31080
+CO SvWX: 31083
+RkyMtnWide: 700
+CentrRgn: 720
+EColo: 705
+
 # Disconnect
 TG DISC: 4000
 

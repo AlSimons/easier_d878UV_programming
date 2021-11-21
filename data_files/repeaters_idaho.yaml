@@ -1,3 +1,29 @@
+IdahoFalls:
+  Name: IdahoFalls
+  RX: 449.5
+  TX: 444.5
+  Mode: D
+  CC: 2
+  DynamicTGs: 1
+  StaticTGs:
+    2:
+      - 3116
+
+Malad:
+  Name: Malad
+  RX: 447.9875
+  TX: 442.9875
+  Mode: D
+  CC: 1
+
+Driggs:
+  Name: Driggs
+  RX: 449.8
+  TX: 444.8
+  Mode: D
+  CC: 1
+  CTCSS: 123.0
+
 Bonners1:
   Name: Bonners 1
   RX: 146.96

@@ -3,3 +3,4 @@ learn_yaml.py
 Pipfile.lock
 generated_channels.yaml
 *.csv
+__pycache__/
