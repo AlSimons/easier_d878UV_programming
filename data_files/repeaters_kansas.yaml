@@ -1,0 +1,88 @@
+# Hays
+Hays:
+  Name: Hays
+  RX: 444.75
+  TX: 449.75
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 3120
+
+# Russell
+Russl:
+  Name: Russl
+  RX: 442.475
+  TX: 447.475
+  Mode: D
+  CC: 7
+  StaticTGs:
+    1:
+      - 3120
+
+# Minneapolis
+Minnapls:
+  Name: Minnapls
+  RX: 444.75
+  TX: 449.75
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 3120
+
+# Manhattan
+Manhtn:
+  Name: Manhtn
+  RX: 444.375
+  TX: 449.375
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 3120
+
+# Topeka
+Topka:
+  Name: Topka
+  RX: 146.805
+  TX: 146.205
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 3120
+
+# Lawrence
+Lwrnce:
+  Name: Lwrnce
+  RX: 444.375
+  TX: 449.375
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 3120
+
+# Basehor
+Basehor:
+  Name: Basehor
+  RX: 444.75
+  TX: 449.75
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 3120
+
+# Kansas City
+KanCty:
+  Name: KanCty
+  RX: 442.575
+  TX: 447.575
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 312037
+  DynamicTGs: 1

@@ -17,6 +17,10 @@ MT Chat: 31300
 ID SW: 3116
 SE ID: 31167
 
+# Utah
+UT SW2: 13149
+UTAH: 3149
+
 # Colorado
 CO SW: 3108
 CO Chat: 31080
@@ -24,6 +28,25 @@ CO SvWX: 31083
 RkyMtnWide: 700
 CentrRgn: 720
 EColo: 705
+
+# Kansas
+Kansas: 3120
+BRAZOS: 312037
+
+# Missouri
+Local9: 9
+BYRG: 31201
+KCSkywarn: 31205
+CentrlMO: 31296
+SW MO: 31291
+MOWide: 3129
+Midwest: 3169
+WW-M: 1
+NOAM-M: 3
+STLMet: 31292
+
+# Illinois
+ILWide: 3117
 
 # Disconnect
 TG DISC: 4000

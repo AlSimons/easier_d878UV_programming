@@ -1,0 +1,35 @@
+# Riverside, UT
+- R: RvrSid
+  T:
+    - UTAH
+    - UT SW2
+
+# Logan, UT
+- R: Logan
+  T:
+    - UTAH
+    - UT SW2
+
+# Layton, UT
+- R: Layton
+  T:
+    - UTAH
+    - GROUP_MONTANA
+
+# Bountiful, UT
+- R: Bntifl
+  T:
+    - UTAH
+
+# West Jordan, UT
+- R: WJordn
+  T:
+    - UTAH
+    - UT SW2
+
+# Woodland Hills, UT
+- R: WoodHls
+  T:
+    - UTAH
+    - UT SW2
+

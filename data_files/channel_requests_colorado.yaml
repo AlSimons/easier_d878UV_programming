@@ -1,0 +1,81 @@
+# Grand Mesa, CO
+- R: GrJunc
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# SquawMtn, CO
+- R: SquawMtn
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Vail, CO
+- R: Vail
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Breckenridge
+- R: Brekrdg
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Denver
+- R: Denver
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Evergreen, CO
+- R: Evrgrn
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Golden, CO
+- R: Golden
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Centennial, CO
+- R: Centenl
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+
+# Genoa, CO
+- R: Genoa
+  T:
+    - GROUP_MONTANA
+    - GROUP_COLORADO
+    - GROUP_TAC
+    - PARROT
+#    - US SAR
+

@@ -1,0 +1,47 @@
+# Columbia
+- R: Columb
+  T:
+    - BYRG
+    - KCSkywarn
+    - CentrlMO
+
+# High Hill
+- R: HiHill
+  T:
+    - BYRG
+    - KCSkywarn
+    - CentrlMO
+    - SW MO
+    - GROUP_MONTANA
+
+# Warrenton
+- R: Warentn
+  T:
+    - MOWide
+    - SW MO
+    - CentrlMO
+    - Local9
+    - BYRG
+    - Midwest
+
+# O'Fallon
+- R: OFallon
+  T:
+    - STLMet
+    - BYRG
+
+# St. Charles
+- R: STChrl
+  T:
+    - STLMet
+    - MOWide
+
+# St. Louis
+- R: STLou
+  T:
+    - MOWide
+    - STLMet
+    - Midwest
+    - WW-M
+    - NOAM-M
+    - ILWide

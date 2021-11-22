@@ -1,0 +1,90 @@
+# Columbia
+Columb:
+  Name: Columb
+  RX: 444.425
+  TX: 449.425
+  Mode: D
+  CC: 3
+  Static TGs:
+    2:
+      - 31201
+      - 31205
+    1:
+      - 31296
+  Dynamic TGs: 1
+
+# High Hill
+HiHill:
+  Name: HiHill
+  RX: 444.025
+  TX: 449.025
+  Mode: D
+  CC: 2
+  StaticTGs:
+    1:
+      - 31291
+      - 31296
+    2:
+      - 31201
+  DynamicTGs: 1
+
+# Warrenton
+Warentn:
+  Name: Warentn
+  RX: 444.9125
+  TX: 449.9125
+  Mode: D
+  CC: 2
+  StaticTGs:
+    1:
+      - 31291
+      - 31296
+      - 3129
+      - 3169
+    2:
+      - 9
+      - 31201
+  DynamicTGs: 1
+
+# O'Fallon
+OFallon:
+  Name: OFallon
+  RX: 444.275
+  TX: 449.275
+  Mode: D
+  CC: 2
+  StaticTGs:
+    2:
+      - 31292
+  DynamicTGs: 1
+
+# St. Charles
+STChrl:
+  Name: STChrl
+  RX: 444.65
+  TX: 449.65
+  Mode: D
+  CC: 2
+  StaticTGs:
+    1:
+      - 31292
+    2:
+      - 3129
+
+# St. Louis
+STLou:
+  Name: STLou
+  RX: 443.55
+  TX: 448.55
+  Mode: D
+  CC: 2
+  StaticTGs:
+    1:
+      - 1
+      - 3
+    2:
+      - 3129
+      - 31292
+      - 3169
+      - 3117
+

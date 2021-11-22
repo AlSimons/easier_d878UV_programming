@@ -1,0 +1,12 @@
+# Terre Haute
+THaute:
+  Name: THaute
+  RX: 442.0875
+  TX: 447.0875
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2: 3117
+  DynamicTGs: 1
+
+

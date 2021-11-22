@@ -41,8 +41,11 @@ def load_data_from_yaml_files():
     # Make sure that all keys are strings.
     simplex = {(str(key) if not isinstance(key, str) else key): simplex[key]
                for key in simplex.keys()}
-    with open('data_files/channel_requests.yaml') as f:
-        channel_requests = yaml.safe_load(f)
+    channel_requests = []
+    for fn in glob('data_files/channel_requests*'):
+        with open(fn) as f:
+            a = yaml.safe_load(f)
+            channel_requests += a  # FIXME
     channel_requests = expand_channel_requests(channel_requests)
     with open('data_files/special_zones.yaml') as f:
         special_zones = yaml.safe_load(f)

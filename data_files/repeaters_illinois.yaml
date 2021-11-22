@@ -1,0 +1,13 @@
+Shiloh:
+  Name: Shiloh
+  RX: 444.3
+  TX: 449.3
+  Mode: D
+  CC: 7
+  StaticTGs:
+    2:
+      - Local2
+      - Local9
+  DynamicTGs: 1
+
+

@@ -1,0 +1,74 @@
+# Riverside, UT
+RvrSid:
+  Name: RvrSid
+  RX: 447.125
+  TX: 442.125
+  Mode: D
+  CC: 1
+  StaticTGs:
+    1:
+      - 13149
+    2:
+      - 3149
+
+#Logan UT
+Logan:
+  Name: Logan
+  RX: 447.0
+  TX: 442.0
+  Mode: D
+  CC: 1
+  StaticTGs:
+    1:
+      - 13149
+    2:
+      - 3149
+
+# Layton UT
+Layton:
+  Name: Layton
+  RX: 447.05
+  TX: 442.05
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      - 3149
+  Dynamic_TGs: 1
+
+# Bountiful
+Bntifl:
+  Name: Bntifl
+  RX: 447.375
+  TX: 442.375
+  Mode: D
+  CC: 1
+  StaticTGs:
+    2:
+      -UTAH
+
+# West Jordan
+WJordn:
+  Name: WJordn
+  RX: 447.9375
+  TX: 442.9375
+  Mode: D
+  CC: 1
+  StaticTGs:
+    1:
+      - 13149
+    2:
+      - 3149
+
+# Woodland Hills
+WoodHls:
+  Name: WoodHls
+  RX: 449.8
+  TX: 444.8
+  Mode: D
+  CC: 1
+  StaticTGs:
+    1:
+      - 13149
+    2:
+      - 3149
