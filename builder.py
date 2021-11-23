@@ -490,9 +490,10 @@ def add_special_zone_members(channels_by_name,
             if zone_name == 'ALL_ZONES':
                 continue
             channel_names = special_zones[zone_name]
-            if not single_radio_id:
-                zone_name = radio_id['Abbrev'] + ' ' + zone_name
             for channel_name in channel_names:
+                # Try to look up the channel by its base name. If that fails, it
+                # is probably because the channel has a RadioID prefix. Try that
+                # way.  If that fails, bomb.
                 try:
                     insert_into_zone(channels_by_name[channel_name],
                                      zone_name,
@@ -506,7 +507,8 @@ def add_special_zone_members(channels_by_name,
                     # radio ID abbreviation.  Try adding it.  If we still get
                     # a key error, fail.
                     channel_name = radio_id['Abbrev'] + ' ' + channel_name
-                    insert_into_zone(channels_by_name[channel_name],
+                    channel_by_name = channels_by_name[channel_name]
+                    insert_into_zone(channel_by_name,
                                      zone_name,
                                      zones,
                                      radio_id,

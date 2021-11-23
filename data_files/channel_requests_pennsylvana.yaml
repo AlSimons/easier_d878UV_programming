@@ -1,0 +1,32 @@
+- R: Revloc
+  T:
+    - Local2
+
+- R: Jacksn
+  T:
+    - Local2
+    - PAWide
+    - W PA
+
+- R: Altoon
+  T:
+    - Local2
+    - PAWide
+
+- R: Belfnte
+  T:
+    - Local2
+    - WW-M
+    - NA-M
+    - PAWide
+    - NE USA
+    - W PA
+    - NC PA
+    - NE PA
+
+- R: ValFrg
+  T:
+    - Local2
+    - Local9
+
+- R:

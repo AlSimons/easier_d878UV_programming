@@ -1,0 +1,44 @@
+# Springfield
+Sprgfld:
+  Name: Sprgfld
+  RX: 442.5125
+  TX: 447.5125
+  Mode: D
+  CC: 1
+  StaticTGs:
+    1:
+      - 1
+      - 3
+    2:
+      - 2
+      - 3172
+      - 3169
+
+# Columbus
+Columb:
+  Name: Columb
+  RX: 145.37
+  TX: 144.77
+  Mode: D
+  CC: 1
+  StaticTGs:
+    1:
+      - 1
+      - 3
+      - 9
+      - 31392
+    2:
+      - 3139
+      - 3169
+
+# Thornville
+Thrnvl:
+  Name: Thrnvl
+  RX: 145.25
+  TX: 144.65
+  Mode: D
+  CC: 7
+  StaticTGs:
+    1:
+      - 3139
+

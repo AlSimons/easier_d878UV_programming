@@ -42,11 +42,23 @@ SW MO: 31291
 MOWide: 3129
 Midwest: 3169
 WW-M: 1
-NOAM-M: 3
+NA-M: 3
 STLMet: 31292
 
 # Illinois
 ILWide: 3117
+
+# Ohio
+OHWide: 3139
+MW USA: 3169
+OHSVWX: 31392
+
+# Pennsylvania
+PAWide: 3142
+W PA: 31422
+NE USA: 3172
+NC PA: 31423
+NE PA: 31424
 
 # Disconnect
 TG DISC: 4000

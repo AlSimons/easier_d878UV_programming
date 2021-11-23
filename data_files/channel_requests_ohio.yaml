@@ -1,0 +1,20 @@
+- R: Sprgfld
+  T:
+    - WW-M
+    - NA-M
+    - Local2
+    - NE USA
+    - MW USA
+
+- R: Columb
+  T:
+    - OHWide
+    - MW USA
+    - WW-M
+    - NA-M
+    - Local9
+    - OHSVWX
+
+- R: Thrnvl
+  T:
+    - OHWide
