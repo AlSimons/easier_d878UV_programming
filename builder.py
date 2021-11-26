@@ -1,7 +1,18 @@
+import argparse
 import csv
 import yaml
 from glob import glob
 from repeaters_from_repeaterbook import get_analog_repeaters_from_repeaterbook
+
+args = 0
+
+
+def parse_args():
+    global args
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--no-220', action='store_true',
+                        help="Omit any 220 frequencies; good for 878")
+    args = parser.parse_args()
 
 
 def load_data_from_yaml_files():
@@ -234,6 +245,8 @@ def make_analog_repeater_from_repeaterbook_channels(repeaters,
     :return: The channels dict, the channels_by_name dict.
     """
     for repeater in repeaters:
+        if args.no_220 and 200.0 < float(repeater['RX']) < 400.0:
+            continue
         channel = channel_defaults.copy()
         channel['Repeater Name'] = repeater['Name']
         channel['Channel Name'] = repeater['Name']
@@ -602,6 +615,7 @@ def change_zone_dict_to_list(zone_dict):
 
 
 def main():
+    parse_args()
     zones = {}
     (radio_ids,
      repeaters,

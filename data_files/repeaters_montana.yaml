@@ -364,6 +364,14 @@ Helena2:
   TX: 448.0
   Mode: A
 
+Helena224.68:
+  Name: Helena224.68
+  RX: 224.68
+  TX: 223.08
+  Mode: A
+  CTCSS: 100.0
+
+
 # Butte Analog
 Butte1:
   Name: Butte 4.50

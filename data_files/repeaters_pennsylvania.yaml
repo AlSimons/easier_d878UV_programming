@@ -42,6 +42,8 @@ Belfnte:
   Name: Belfnte
   RX: 147.105
   TX: 147.705
+  Mode: D
+  CC: 1
   StaticTGs:
     1:
       - 1
