@@ -8,16 +8,16 @@
   # If "Off" is not quoted, it is recorded as False
   CTCSS/DCS Decode: "Off"
   CTCSS/DCS Encode: "Off"
-  Contact: NoTG
+  Contact:
   Contact Call Type: Group Call
   Contact TG/DMR ID: 0
   Radio ID: NoCall NoName
   Busy Lock/TX Permit: Different color code
   Squelch Mode: Carrier
   Optional Signal: "Off"
-  DTMF ID: 1
-  2Tone ID: 1
-  5Tone ID: 1
+  DTMF ID:
+  2Tone ID:
+  5Tone ID:
   PTT ID: "Off"
   Color Code: 1
   Slot: 0
@@ -44,7 +44,8 @@
   Correct Frequency[Hz]: 0
   SMS Confirmation: "Off"
   Exclude channel from roaming: 0
-  DMR MODE: 0
+  DMR MODE: 0  # Simplex, 1 for Repeater
   DataACK Disable: 0
   R5toneBot: 0
   R5ToneEot: 0
+  
