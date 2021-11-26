@@ -261,7 +261,6 @@ def make_analog_repeater_from_repeaterbook_channels(repeaters,
         if 'CTCSS' in keys and ('RCTCSS' in keys or 'TCTCSS' in keys):
             raise KeyError
         if 'CTCSS' in keys:
-            channel["CTCSS/DCS Decode"] = repeater['CTCSS']
             channel["CTCSS/DCS Encode"] = repeater['CTCSS']
         if 'RCTCSS' in keys:
             channel["CTCSS/DCS Encode"] = repeater['RCTCSS']
@@ -324,6 +323,7 @@ def make_digital_repeater_channel(channels,
     channel['Band Width'] = '12.5K'
     channel['Color Code'] = repeater['CC']
     channel['Contact'] = talkgroup
+    channel['DMR MODE'] = 1
     if type(talkgroup_number) == dict:
         if talkgroup_number['Private']:
             channel['Contact Call Type'] = 'Private'
@@ -394,6 +394,7 @@ def make_digital_simplex_channel(channels,
     channel['Contact TG/DMR ID'] = 99
     channel['Slot'] = 1
     channel['Radio ID'] = radio_id['Name']
+    channel['DMR MODE'] = 0
     if 'RO' in simplex_channel.keys() and simplex_channel['RO']:
         channel['PTT Prohibit'] = 'On'
     channels.append(channel)
