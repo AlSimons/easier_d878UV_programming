@@ -1,13 +1,14 @@
 # Hotspot
 Hotspot:
   Name: Hotspot
-  RX: 445.8625
-  TX: 445.8625
+  RX: 440.0375
+  TX: 440.0375
   Mode: D
   CC: 1
+  # Without this, the hotspot would be set into the Simplex zone, because its
+  # TX and RX are the same.
+  Simplex Repeater: 1
   StaticTGs:
     2:
       31301
   DynamicTGs: 2
-  DMR MODE: 0 # Simplex!  Need to specify because digital repeaters
-             # default to DMR MODE = 1, repeater.

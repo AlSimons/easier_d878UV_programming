@@ -6,12 +6,12 @@ MPRG1: 31301
 MPRG2: 31302
 MPRG3: 3130035
 MPRG4: 3130036
-MPRG Cluster: 8
+MPRGClust: 8
 Local2: 2
 
 # Montana
-MT SW: 3130
-MT Chat: 31300
+MTWide: 3130
+MTChat: 31300
 
 # Idaho
 ID SW: 3116
