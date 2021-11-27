@@ -71,6 +71,9 @@ US SAR TAC: 31682
 NoAmer: 93
 WW: 91
 
+# Disconnect
+Disconnect: 4000
+
 # Parrot  NOTE: PRIVATE CALL, notice different format of YAML
 PARROT:
   Number: 9990

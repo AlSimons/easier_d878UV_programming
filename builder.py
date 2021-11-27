@@ -1,5 +1,6 @@
 import argparse
 import csv
+import os
 import yaml
 from glob import glob
 from repeaters_from_repeaterbook import get_analog_repeaters_from_repeaterbook
@@ -10,9 +11,16 @@ args = 0
 def parse_args():
     global args
     parser = argparse.ArgumentParser()
-    parser.add_argument('--no-220', action='store_true',
-                        help="Omit any 220 frequencies; good for 878")
+    parser.add_argument('--AT878', action='store_true',
+                        help="Omit any 220 frequencies, save files in ../878")
+    parser.add_argument('--AT578', action='store_true',
+                        help="Include any 220 frequencies, save files in ../578")
     args = parser.parse_args()
+    if args.AT578 and args.AT878:
+        parser.error("AT578 and AT878 are mutually exclusive")
+    if not (args.AT578 or args.AT878):
+        parser.error("One of AT578 or AT878 must be supplied")
+    pass
 
 
 def load_data_from_yaml_files():
@@ -128,9 +136,14 @@ def fix_list_members(dict_list):
 
 
 def write_dict_to_csv(dict_list_to_write, file_name, field_names):
+    # Determine the correct output directory
+    if args.AT578:
+        dir = '../578'
+    else:
+        dir = '../878'
     index_dict_list(dict_list_to_write)
     fix_list_members(dict_list_to_write)
-    with open(file_name, 'w', newline='') as f:
+    with open(os.path.join(dir, file_name), 'w', newline='') as f:
         writer = csv.DictWriter(f,
                                 fieldnames=field_names,
                                 extrasaction='ignore',
@@ -245,7 +258,8 @@ def make_analog_repeater_from_repeaterbook_channels(repeaters,
     :return: The channels dict, the channels_by_name dict.
     """
     for repeater in repeaters:
-        if args.no_220 and 200.0 < float(repeater['RX']) < 400.0:
+        # Skip 220 band for 878.
+        if args.AT878 and 200.0 < float(repeater['RX']) < 400.0:
             continue
         channel = channel_defaults.copy()
         channel['Repeater Name'] = repeater['Name']
@@ -311,9 +325,7 @@ def make_digital_repeater_channel(channels,
                                   single_radio_id):
     channel = channel_defaults.copy()
     channel['Repeater Name'] = repeater['Name']
-    channel_name = repeater['Name'] + ' ' + talkgroup
-    if not single_radio_id:
-        channel_name = radio_id['Abbrev'] + ' ' + channel_name
+    channel_name = repeater['Decorated Name'] + ' ' + talkgroup
     # Channel names are limited to 16 characters.
     channel_name = channel_name[:16]
     channel['Channel Name'] = channel_name
@@ -349,7 +361,8 @@ def make_digital_repeater_channel(channels,
 
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
-    insert_into_zones(channel, zones, radio_id, single_radio_id)
+    insert_into_zones(channel, zones, radio_id, state=None,
+                      single_radio_id=single_radio_id)
 
 
 def make_digital_repeater_channels(channels,
@@ -402,6 +415,26 @@ def make_digital_simplex_channel(channels,
     insert_into_zones(channel, zones, radio_id, single_radio_id)
 
 
+def decorate_repeater_name(repeater, radio_id, single_radio_id):
+    """
+    Creates a new repeater dict member, "Decorated Name". If a
+    repeater is digital and we are not programming a single radio id, then
+    the decorated name is constructed with a prefix from the radio_id
+    dict.  Otherwise the repeater's decorated name is simply the repeater name.
+    We're tracking both names because channels use the decorated name, but
+    zones do not.
+    :param repeater: a repeater dict
+    :param radio_id: A radioid dict
+    :param single_radio_id: True if we're programming a single radio ID.
+    :return: None
+    """
+    if repeater['Mode'] == 'D' and not single_radio_id:
+        repeater['Decorated Name'] = \
+            radio_id['Abbrev'] + ' ' + repeater['Name']
+    else:
+        repeater['Decorated Name'] = repeater['Name']
+
+
 def make_channels(repeaters,
                   talkgroups,
                   simplex,
@@ -425,6 +458,7 @@ def make_channels(repeaters,
         information about the radio IDs to be programmed into the radio.
     :return: A list of fully populated dicts for writing to a CSV
     """
+
     channels = []
     channels_by_name = {}
     for radio_id in radio_ids:
@@ -432,6 +466,7 @@ def make_channels(repeaters,
         for channel_request in channel_requests:
             if 'R' in channel_request.keys():
                 repeater = repeaters[channel_request['R']]
+                decorate_repeater_name(repeater, radio_id, single_radio_id)
                 if repeater['Mode'] == 'D':
                     make_digital_repeater_channels(channels,
                                                    channels_by_name,
@@ -485,6 +520,8 @@ def add_special_zone_members(channels_by_name,
                              zones,
                              radio_ids,
                              single_radio_id):
+    # fixme
+
     # It is possible that a channel to be added here is already in the zone.
     # We'll filter those out in insert_into_zone().
     for radio_id in radio_ids:
@@ -553,13 +590,11 @@ def insert_into_zones(channel, zones, radio_id=None, state='Ana Rptrs',
         if channel['Channel Type'] != 'D-Digital':
             # This is an analog repeater. If specified with a state, put into
             # a zone with the state name.  Otherwise, in the generic "Ana Rptrs"
-            insert_into_zone(channel, state, zones, radio_id,
-                             single_radio_id)
+            insert_into_zone(channel, state, zones, radio_id)
         else:
             zone_name = channel['Repeater Name']
-            if not single_radio_id:
-                zone_name = radio_id['Abbrev'] + ' ' + zone_name
-            insert_into_zone(channel, zone_name, zones, radio_id)
+            insert_into_zone(channel, zone_name, zones, radio_id,
+                             single_radio_id)
 
 
 def insert_into_zone(channel, zone_key, zones, radio_id, single_radio_id=True):
@@ -574,25 +609,24 @@ def insert_into_zone(channel, zone_key, zones, radio_id, single_radio_id=True):
         }
         zones[zone_key] = this_zone
 
+    # fixme
     channel_name = channel['Channel Name']
-    if channel['Channel Type'] == 'D-Digital' and not single_radio_id:
-        channel_name = radio_id['Abbrev'] + ' ' + channel_name
 
     # Don't enter a channel already in the zone.
     if channel['Channel Name'] in this_zone['Zone Channel Member']:
         return
 
-    this_zone['Zone Channel Member'].append(channel['Channel Name'])
+    this_zone['Zone Channel Member'].append(channel_name)
     this_zone['Zone Channel Member RX Frequency'].append(
         channel['Receive Frequency'])
     this_zone['Zone Channel Member TX Frequency'].append(
         channel['Transmit Frequency'])
     if len(this_zone['Zone Channel Member']) == 1:
-        this_zone['A Channel'] = channel['Channel Name']
+        this_zone['A Channel'] = channel_name
         this_zone['A Channel RX Frequency'] = channel['Receive Frequency']
         this_zone['A Channel TX Frequency'] = channel['Transmit Frequency']
     if len(this_zone['Zone Channel Member']) == 2:
-        this_zone['B Channel'] = channel['Channel Name']
+        this_zone['B Channel'] = channel_name
         this_zone['B Channel RX Frequency'] = channel['Receive Frequency']
         this_zone['B Channel TX Frequency'] = channel['Transmit Frequency']
 
