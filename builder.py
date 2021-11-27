@@ -336,6 +336,12 @@ def make_digital_repeater_channel(channels,
     channel['Color Code'] = repeater['CC']
     channel['Contact'] = talkgroup
     channel['DMR MODE'] = 1
+    try:
+        # Is this a simplex repeater, e.g., a hotspot?
+        channel['Simplex Repeater'] = repeater['Simplex Repeater']
+    except KeyError:
+        # Nope, just move along.
+        pass
     if type(talkgroup_number) == dict:
         if talkgroup_number['Private']:
             channel['Contact Call Type'] = 'Private'
@@ -374,6 +380,11 @@ def make_digital_repeater_channels(channels,
                                    zones,
                                    radio_id,
                                    single_radio_id):
+    # Have a disconnect in every group with digital repeaters.
+    # The reason we do it conditionally is that we comr through here once for
+    # every radio_id.
+    if channel_request['T'][-1] != 'Disconnect':
+        channel_request['T'].append('Disconnect')
     for talkgroup in channel_request['T']:
         make_digital_repeater_channel(channels,
                                       channels_by_name,
@@ -583,7 +594,8 @@ def insert_into_zones(channel, zones, radio_id=None, state='Ana Rptrs',
         zone names
     :return: None
     """
-    if channel['Transmit Frequency'] == channel['Receive Frequency']:
+    if channel['Transmit Frequency'] == channel['Receive Frequency']\
+            and not 'Simplex Repeater' in channel:
         # RX == TX: A simplex channel
         insert_into_zone(channel, 'simplex', zones, radio_id, single_radio_id)
     else:
@@ -609,11 +621,10 @@ def insert_into_zone(channel, zone_key, zones, radio_id, single_radio_id=True):
         }
         zones[zone_key] = this_zone
 
-    # fixme
     channel_name = channel['Channel Name']
 
     # Don't enter a channel already in the zone.
-    if channel['Channel Name'] in this_zone['Zone Channel Member']:
+    if channel_name in this_zone['Zone Channel Member']:
         return
 
     this_zone['Zone Channel Member'].append(channel_name)
