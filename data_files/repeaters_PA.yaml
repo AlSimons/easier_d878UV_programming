@@ -1,4 +1,4 @@
-# Revloc
+# Revloc, PA
 Revloc:
   Name: Revloc
   RX: 440.85
@@ -9,7 +9,7 @@ Revloc:
     2:
       - 2
 
-# Jackson Township
+# Jackson Township, PA
 Jacksn:
   Name: Jacksn
   RX: 444.8
@@ -23,7 +23,7 @@ Jacksn:
       - 3142
       - 31422
 
-# Altoona
+# Altoona, PA
 Altoon:
   Name: Altoon
   RX: 442.1
@@ -37,7 +37,7 @@ Altoon:
       - 3142
   DynamicTGs: 2
 
-# Bellefonte
+# Bellefonte, PA
 Belfnte:
   Name: Belfnte
   RX: 147.105
@@ -56,7 +56,7 @@ Belfnte:
     2:
       - 2
 
-# Valley Forge
+# Valley Forge, PA
 ValFrg:
   Name: ValFrg
   RX: 441.3

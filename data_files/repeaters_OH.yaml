@@ -1,4 +1,4 @@
-# Springfield
+# Springfield, OH
 Sprgfld:
   Name: Sprgfld
   RX: 442.5125
@@ -14,7 +14,7 @@ Sprgfld:
       - 3172
       - 3169
 
-# Columbus
+# Columbus, OH
 Columb:
   Name: Columb
   RX: 145.37
@@ -31,7 +31,7 @@ Columb:
       - 3139
       - 3169
 
-# Thornville
+# Thornville, OH
 Thrnvl:
   Name: Thrnvl
   RX: 145.25

@@ -1,3 +1,4 @@
+# Grand Junction, CO
 GrJunc:
   Name: GrJunc
   RX: 445.05
@@ -11,6 +12,7 @@ GrJunc:
     2:
       - 720
 
+# Squaw Mountain, CO
 SquawMtn:
   Name: SquawMtn
   RX: 145.175
@@ -24,6 +26,7 @@ SquawMtn:
     2:
       - 705
 
+# Vail, CO
 Vail:
   Name: Vail
   RX: 445.075
@@ -31,6 +34,7 @@ Vail:
   Mode: D
   CC: 7
 
+# Brekenridge, CO
 Brekrdg:
   Name: Brekrdg
   RX: 445.0875
@@ -38,6 +42,7 @@ Brekrdg:
   Mode: D
   CC: 7
 
+# Denver, CO
 Denver:
   Name: Denver
   RX: 446.7875
@@ -49,6 +54,7 @@ Denver:
     2:
       - 310805
 
+# Evergreen, CO
 Evrgrn:
   Name: Evrgrn
   RX: 145.175
@@ -61,6 +67,7 @@ Evrgrn:
     2:
       - 705
 
+# Golden, CO
 Golden:
   Name: Golden
   RX: 145.37
@@ -73,6 +80,7 @@ Golden:
     2:
       - 705
 
+# Centennial, CO
 Centenl:
   Name: Centenl
   RX: 147.315
@@ -80,6 +88,7 @@ Centenl:
   Mode: D
   CC: 1
 
+# Genoa, CO
 Genoa:
   Name: Genoa
   RX: 446.7375
@@ -91,4 +100,3 @@ Genoa:
       - 700
     2:
       - 720
-

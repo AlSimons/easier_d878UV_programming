@@ -11,7 +11,7 @@ RvrSid:
     2:
       - 3149
 
-#Logan UT
+#Logan, UT
 Logan:
   Name: Logan
   RX: 447.0
@@ -24,7 +24,7 @@ Logan:
     2:
       - 3149
 
-# Layton UT
+# Layton, UT
 Layton:
   Name: Layton
   RX: 447.05
@@ -36,7 +36,7 @@ Layton:
       - 3149
   Dynamic_TGs: 1
 
-# Bountiful
+# Bountiful, UT
 Bntifl:
   Name: Bntifl
   RX: 447.375
@@ -47,7 +47,7 @@ Bntifl:
     2:
       -UTAH
 
-# West Jordan
+# West Jordan, UT
 WJordn:
   Name: WJordn
   RX: 447.9375
@@ -60,7 +60,7 @@ WJordn:
     2:
       - 3149
 
-# Woodland Hills
+# Woodland Hills, UT
 WoodHls:
   Name: WoodHls
   RX: 449.8

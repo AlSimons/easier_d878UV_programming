@@ -1,5 +1,6 @@
 .idea
 learn_yaml.py
+zone_table.txt
 Pipfile.lock
 generated_channels.yaml
 *.csv

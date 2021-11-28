@@ -6,7 +6,8 @@ Hotspot:
   Mode: D
   CC: 1
   # Without this, the hotspot would be set into the Simplex zone, because its
-  # TX and RX are the same.
+  # TX and RX are the same.  The value (1) doesn't matter, we just check if the
+  # key "Simplex Repeater" is present.
   Simplex Repeater: 1
   StaticTGs:
     2:

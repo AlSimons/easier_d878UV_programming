@@ -1,4 +1,4 @@
-# Columbia
+# Columbia, MO
 Columb:
   Name: Columb
   RX: 444.425
@@ -13,7 +13,7 @@ Columb:
       - 31296
   Dynamic TGs: 1
 
-# High Hill
+# High Hill, MO
 HiHill:
   Name: HiHill
   RX: 444.025
@@ -28,7 +28,7 @@ HiHill:
       - 31201
   DynamicTGs: 1
 
-# Warrenton
+# Warrenton, MO
 Warentn:
   Name: Warentn
   RX: 444.9125
@@ -46,7 +46,7 @@ Warentn:
       - 31201
   DynamicTGs: 1
 
-# O'Fallon
+# O'Fallon, MO
 OFallon:
   Name: OFallon
   RX: 444.275
@@ -58,7 +58,7 @@ OFallon:
       - 31292
   DynamicTGs: 1
 
-# St. Charles
+# St. Charles, MO
 STChrl:
   Name: STChrl
   RX: 444.65
@@ -71,7 +71,7 @@ STChrl:
     2:
       - 3129
 
-# St. Louis
+# St. Louis, MO
 STLou:
   Name: STLou
   RX: 443.55
@@ -87,4 +87,3 @@ STLou:
       - 31292
       - 3169
       - 3117
-

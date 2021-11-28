@@ -1,3 +1,4 @@
+# Idaho Falls, ID
 IdahoFalls:
   Name: IdahoFalls
   RX: 449.5
@@ -9,6 +10,7 @@ IdahoFalls:
     2:
       - 3116
 
+# Malad City, ID
 Malad:
   Name: Malad
   RX: 447.9875
@@ -16,6 +18,7 @@ Malad:
   Mode: D
   CC: 1
 
+# Driggs, ID
 Driggs:
   Name: Driggs
   RX: 449.8
@@ -24,6 +27,7 @@ Driggs:
   CC: 1
   CTCSS: 123.0
 
+# Bonners Ferry, ID
 Bonners1:
   Name: Bonners 1
   RX: 146.96
@@ -31,6 +35,7 @@ Bonners1:
   Mode: A
   CTCSS: 123.0
 
+# Bonners Ferry, ID
 Bonners2:
   Name: Bonners 2
   RX: 147.04
@@ -38,6 +43,7 @@ Bonners2:
   Mode: A
   CTCSS: 100.0
 
+# Bonners Ferry, ID
 Bonn440:
   Name: Bonn 440
   RX: 443.025
@@ -45,6 +51,7 @@ Bonn440:
   Mode: A
   CTCSS: 100.0
 
+# Sandpoint, ID
 Sandpt1:
   Name: Sandpt 1
   RX: 145.27
@@ -52,6 +59,7 @@ Sandpt1:
   Mode: A
   CTCSS: 127.3
 
+# Sandpoint, ID
 Sandpt2:
   Name: Sandpt 2
   RX: 145.49
@@ -59,6 +67,7 @@ Sandpt2:
   Mode: A
   CTCSS: 136.5
 
+# Sandpoint, ID
 Sndpt41:
   Name: Sndpt 41
   RX: 442.5
@@ -66,16 +75,17 @@ Sndpt41:
   Mode: A
   CTCSS: 131.8
 
+# Sandpoint, ID
 Sndpt42:
   Name: Sndpt 42
   RX: 448.375
   TX: 443.375
   Mode: A
 
+# Coeur d'Alene, ID
 Coeur:
   Name: Coeur
   RX: 443.975
   TX: 448.975
   Mode: A
   CTCSS: 136.5
-

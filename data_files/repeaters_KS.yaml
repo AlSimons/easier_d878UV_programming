@@ -1,4 +1,4 @@
-# Hays
+# Hays, KS
 Hays:
   Name: Hays
   RX: 444.75
@@ -9,7 +9,7 @@ Hays:
     2:
       - 3120
 
-# Russell
+# Russell, KS
 Russl:
   Name: Russl
   RX: 442.475
@@ -20,7 +20,7 @@ Russl:
     1:
       - 3120
 
-# Minneapolis
+# Minneapolis, KS
 Minnapls:
   Name: Minnapls
   RX: 444.75
@@ -31,7 +31,7 @@ Minnapls:
     2:
       - 3120
 
-# Manhattan
+# Manhattan, KS
 Manhtn:
   Name: Manhtn
   RX: 444.375
@@ -42,7 +42,7 @@ Manhtn:
     2:
       - 3120
 
-# Topeka
+# Topeka, KS
 Topka:
   Name: Topka
   RX: 146.805
@@ -53,7 +53,7 @@ Topka:
     2:
       - 3120
 
-# Lawrence
+# Lawrence, KS
 Lwrnce:
   Name: Lwrnce
   RX: 444.375
@@ -64,7 +64,7 @@ Lwrnce:
     2:
       - 3120
 
-# Basehor
+# Basehor, KS
 Basehor:
   Name: Basehor
   RX: 444.75
@@ -75,7 +75,7 @@ Basehor:
     2:
       - 3120
 
-# Kansas City
+# Kansas City, KS
 KanCty:
   Name: KanCty
   RX: 442.575

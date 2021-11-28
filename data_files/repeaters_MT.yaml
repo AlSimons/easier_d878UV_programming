@@ -1,5 +1,6 @@
 # Montana repeaters
 # MacDonald Pass UHF
+# MacDonald Pass, MT
 MP:
   Name: MP
   RX: 444.1
@@ -16,7 +17,7 @@ MP:
     2:
     - 31301
 
-# MacDonald Pass 2M
+# MacDonald Pass, MT
 MP2:
   Name: MP 2M
   RX: 147.1
@@ -32,7 +33,7 @@ MP2:
     2:
     - 31301
 
-# North Hills
+# North Hills, MT
 NH:
   Name: NoHil
   RX: 448.9
@@ -48,7 +49,7 @@ NH:
     2:
     - 31301
 
-# Big Fork
+# Big Fork, MT
 BF:
   Name: BgFrk
   RX: 444.325
@@ -63,7 +64,7 @@ BF:
     2:
     - 31304
 
-# Boulder Hill
+# Boulder Hill, MT
 BH:
   Name: BldHl
   RX: 449.2
@@ -79,7 +80,7 @@ BH:
     2:
     - 31301
 
-# Boulder City
+# Boulder City, MT
 BC:
   Name: BldCt
   RX: 444.85
@@ -94,7 +95,7 @@ BC:
     2:
     - 31304
 
-# Great Falls
+# Great Falls, MT
 GF:
   Name: GrFls
   RX: 449.2
@@ -109,6 +110,7 @@ GF:
     2:
     - 31301
 
+# Great Falls, MT
 GF2:
   Name: GrFl2
   RX: 146.8
@@ -122,7 +124,7 @@ GF2:
     2:
     - 31301
 
-# Big Sky / Lone Mountain
+# Big Sky / Lone Mountain, MT
 BSLM:
   Name: BSLM
   RX: 447.0
@@ -137,7 +139,7 @@ BSLM:
     2:
     - 31303
 
-# Billings
+# Billings, MT
 BIL:
   Name: Blngs
   RX: 448.65
@@ -146,12 +148,10 @@ BIL:
   CC: 1
   DynamicTGs: 1 # ??? FIXME
   StaticTGs:
-    1:
-      -   #  Fiction; none listed.
     2:
       - 31301
 
-# Bozeman
+# Bozeman, MT
 BZ1:
   Name: Bzmn1
   RX: 449.5
@@ -166,6 +166,7 @@ BZ1:
     2:
       - 31303
 
+# Bozeman, MT
 BZ2:
   Name: Bzmn2
   RX: 449.9
@@ -180,6 +181,7 @@ BZ2:
     2:
       - 31303
 
+# Bozeman, MT
 BZ3:
   Name: Bzmn3
   RX: 448.35
@@ -195,6 +197,7 @@ BZ3:
     2:
       - 31303
 
+# Bozeman, MT
 BZ4:
   Name: Bzmn4
   RX: 447.95
@@ -210,7 +213,7 @@ BZ4:
     2:
       - 31303
 
-# Butte
+# Butte, MT
 BUTTE:
   Name: Butte
   RX: 444.0
@@ -225,7 +228,7 @@ BUTTE:
     2:
       - 31303
 
-# Dillon
+# Dillon, MT
 DLN:
   Name:  Dilln
   RX: 444.1
@@ -239,7 +242,7 @@ DLN:
     2:
       - 31301
 
-# Eureka
+# Eureka, MT
 EUR:
   Name: Eurka
   RX: 444.725
@@ -254,7 +257,7 @@ EUR:
       - 31301
       - 31304
 
-# Hamilton -- Seems to be a public safety repeater.
+# Hamilton, MT # -- Seems to be a public safety repeater.
 HAM:
   Name: Hamtn
   RX: 422.025
@@ -275,7 +278,7 @@ HAM:
       - 31229
       - 31305
 
-# Missoula
+# Missoula, MT
 MISS:
   Name: Misla
   RX: 448.9
@@ -292,7 +295,7 @@ MISS:
     2:
       - 31301
 
-# Toston
+# Toston, MT
 TO:
   Name: Tostn
   RX: 449.3
@@ -308,7 +311,7 @@ TO:
     2:
       - 31301
 
-# Lookout Pass
+# Lookout Pass, MT
 LP:
   Name: LkPas
   RX: 444.2
@@ -414,12 +417,4 @@ Superior:  # On I-90 toward ID
   TX: 146.36
   Mode: A
   CTCSS: 88.5
-
-#:
-#  Name:
-#  RX:
-#  TX:
-#  Mode: A
-#  CTCSS:
-
 
