@@ -354,11 +354,11 @@
 # Simplex RO channels
 - S: SAR RO # National SAR channel NO TRANSMIT, Part 95
 
-- S: WX1 RO
-- S: WX2 RO
-- S: WX3 RO
-- S: WX4 RO
-- S: WX5 RO
-- S: WX6 RO
-- S: WX7 RO
+- S: WX1
+- S: WX2
+- S: WX3
+- S: WX4
+- S: WX5
+- S: WX6
+- S: WX7
 

@@ -61,31 +61,31 @@ SAR RO:
   RO: True
 
 # Weather
-WX1 RO:
+WX1:
   Freq: 162.4
   Mode: A
   RO: True
-WX2 RO:
+WX2:
   Freq: 162.425
   Mode: A
   RO: True
-WX3 RO:
+WX3:
   Freq: 162.45
   Mode: A
   RO: True
-WX4 RO:
+WX4:
   Freq: 162.475
   Mode: A
   RO: True
-WX5 RO:
+WX5:
   Freq: 162.5
   Mode: A
   RO: True
-WX6 RO:
+WX6:
   Freq: 162.525
   Mode: A
   RO: True
-WX7 RO:
+WX7:
   Freq: 162.55
   Mode: A
   RO: True

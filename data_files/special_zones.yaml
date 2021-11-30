@@ -12,7 +12,7 @@ ALL_ZONES:
   - Al & Kathe
   - APRS
 
-HELENA:
+Helena:
   - MP MPRG1
   - MP 2M MPRG1
   - NoHil MPRG1
@@ -27,16 +27,25 @@ HELENA:
   - "446.0"
   - Helena ARES
   - Al & Kathe
-  - WX1 RO
+  - WX1
 
 MP:
   - Belmont
   - Helena ARES
   - Al & Kathe
-  - WX1 RO
+  - WX1
 
 NoHil:
   - Belmont
   - Helena ARES
   - Al & Kathe
-  - WX1 RO
+  - WX1
+
+Weather:
+  - WX1
+  - WX2
+  - WX3
+  - WX4
+  - WX5
+  - WX6
+  - WX7
