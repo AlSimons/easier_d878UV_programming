@@ -306,13 +306,13 @@
 
 #
 # Helena analog repeaters
-- R: CCARC
+- R: Belmont
 - R: North Hills
 - R: Hogback1
 - R: Hogback2
-- R: Helena1
-- R: Helena2
-- R: Helena224.68
+- R: Hel7.32
+- R: Hel224
+- R: Hel443
 - R: Butte1
 - R: Butte2
 - R: Butte3

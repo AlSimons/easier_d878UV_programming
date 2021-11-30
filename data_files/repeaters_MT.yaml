@@ -328,7 +328,7 @@ LP:
       - 31301
 
 # Helena analog repeaters
-CCARC:
+Belmont:
   Name: Belmont
   RX: 147.22
   TX: 147.82
@@ -355,24 +355,24 @@ Hogback2:
   Mode: A
   CTCSS: 146.2
 
-Helena1:
-  Name: Helena 7.32
+Hel7.32:
+  Name: Hel7.32
   RX: 147.32
   TX: 147.92
   Mode: A
 
-Helena2:
-  Name: Helena 443.0
-  RX: 443.0
-  TX: 448.0
-  Mode: A
-
-Helena224.68:
-  Name: Helena224.68
+Hel224:
+  Name: Hel224
   RX: 224.68
   TX: 223.08
   Mode: A
   CTCSS: 100.0
+
+Hel443:
+  Name: Hel443
+  RX: 443.0
+  TX: 448.0
+  Mode: A
 
 
 # Butte Analog

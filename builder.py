@@ -415,12 +415,14 @@ def make_digital_simplex_channel(channels,
     channel['Channel Type'] = 'D-Digital'
     channel['Band Width'] = '12.5K'
     channel['Color Code'] = 1
+    channel['Contact'] = 'Simplex'
     channel['Contact TG/DMR ID'] = 99
     channel['Slot'] = 1
     channel['Radio ID'] = radio_id['Name']
     channel['DMR MODE'] = 0
     if 'RO' in simplex_channel.keys() and simplex_channel['RO']:
         channel['PTT Prohibit'] = 'On'
+    channel['Busy Lock/TX Permit'] = 'Off'
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
     insert_into_zones(channel, zones, radio_id, single_radio_id)
@@ -477,6 +479,10 @@ def make_channels(repeaters,
         for channel_request in channel_requests:
             if 'R' in channel_request.keys():
                 repeater = repeaters[channel_request['R']]
+                # Don't include 220 repeaters for 878
+                if args.AT878 and 200.0 < float(repeater['RX']) < 400.0:
+                    continue
+
                 decorate_repeater_name(repeater, radio_id, single_radio_id)
                 if repeater['Mode'] == 'D':
                     make_digital_repeater_channels(channels,
@@ -531,8 +537,6 @@ def add_special_zone_members(channels_by_name,
                              zones,
                              radio_ids,
                              single_radio_id):
-    # fixme
-
     # It is possible that a channel to be added here is already in the zone.
     # We'll filter those out in insert_into_zone().
     for radio_id in radio_ids:
@@ -567,14 +571,19 @@ def add_special_zone_members(channels_by_name,
                     # we're having multiple radio IDs, and the channel name
                     # in the special zones dict doesn't have a prefixed
                     # radio ID abbreviation.  Try adding it.  If we still get
-                    # a key error, fail.
-                    channel_name = radio_id['Abbrev'] + ' ' + channel_name
-                    channel_by_name = channels_by_name[channel_name]
-                    insert_into_zone(channel_by_name,
-                                     zone_name,
-                                     zones,
-                                     radio_id,
-                                     single_radio_id)
+                    # a key error, report it. We expect these for 220 repeaters
+                    # when we're building for the 878.
+                    try:
+                        channel_name = radio_id['Abbrev'] + ' ' + channel_name
+                        channel_by_name = channels_by_name[channel_name]
+                        insert_into_zone(channel_by_name,
+                                         zone_name,
+                                         zones,
+                                         radio_id,
+                                         single_radio_id)
+                    except KeyError:
+                        print("Can't find channel {}. Possibly 220 channel?".
+                              format(channel_name))
 
 
 def insert_into_zones(channel, zones, radio_id=None, state='Ana Rptrs',
