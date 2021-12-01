@@ -1,0 +1,27 @@
+# Stamford
+Stmfd2M:
+  Name: Stmfd2M
+  RX: 146.655
+  TX: 146.055
+  Mode: A
+  CTCSS: 100.0
+
+# Stamford, CT
+StmfdD:
+  Name: StmfdD
+  RX: 447.125
+  TX: 442.125
+  Mode: D
+  CC: 2
+  StaticTGs:
+    1:
+      - 1
+      - 3
+      - 310
+      - 8909
+    2:
+      - 9
+      - 3172
+      - 8901
+      - 8902
+

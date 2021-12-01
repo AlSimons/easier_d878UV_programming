@@ -1,0 +1,13 @@
+# Stamford # analog. 146.655
+- R: Stmfd2M
+
+# Stamford # DMR
+- R: StmfdD
+  T:
+    - CTWide
+    - NE USA
+    - WW-M
+    - NA-M
+    - TAC310
+    - CT-TAC311-M
+    - Local9

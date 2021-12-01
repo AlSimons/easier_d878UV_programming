@@ -20,7 +20,6 @@ def parse_args():
         parser.error("AT578 and AT878 are mutually exclusive")
     if not (args.AT578 or args.AT878):
         parser.error("One of AT578 or AT878 must be supplied")
-    pass
 
 
 def load_data_from_yaml_files():

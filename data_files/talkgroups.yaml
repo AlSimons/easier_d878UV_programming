@@ -60,6 +60,11 @@ NE USA: 3172
 NC PA: 31423
 NE PA: 31424
 
+# Connecticut
+CT-TAC1-M: 8902
+CT-TAC311-M: 8909
+CTWide: 8901
+
 # Disconnect
 TG DISC: 4000
 
