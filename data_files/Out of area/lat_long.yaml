@@ -1,0 +1,45 @@
+# Helena to Provo, down 15
+- N: 46.797
+  W: -112.571
+  S: 39.319
+  E: -111.758
+# Provo east to Denver on 70
+- N: 40.218
+  W: -112.046
+  S: 38.740
+  E: -104.404
+# Denver east to Oakley on 70
+- N: 39.907
+  W: -105.336
+  S: 39.054
+  E: -100.685
+# Oakley to Kansas City on 70
+- N: 39.378
+  W: -100.947
+  S: 38.884
+  E: -94.334
+# Kansas City to St Louis on 70
+- N: 39.228
+  W: -94.831
+  S: 38.515
+  E: -90.054
+# St Louis to Indianapolis on 70
+- N: 39.933
+  W: -90.335
+  S: 38.530
+  E: -86.003
+# Indianapolis to Columbus OH on 70
+- N: 40.118
+  W: -86.312
+  S: 39.649
+  E: -82.886
+# Columbus to Pittsburgh on 70
+- N: 40.756
+  W: -83.203
+  S: 39.818
+  E: -79.806
+# Pittsburgh to Corning
+- N: 42.402
+  W: -80.125
+  S: 39.870
+  E: -76.829
