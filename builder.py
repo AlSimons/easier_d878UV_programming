@@ -310,6 +310,9 @@ def make_analog_simplex_channel(channels,
     channel['Busy Lock/TX Permit'] = 'Off'
     if 'RO' in simplex_channel.keys() and simplex_channel['RO']:
         channel['PTT Prohibit'] = 'On'
+    if simplex_name == "APRS":
+        channel['APRS RX'] = 'On'
+        channel['APRS Report Type'] = 'Analog'
     channels.append(channel)
     channels_by_name[simplex_name] = channel
     insert_into_zones(channel, zones)
