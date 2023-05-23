@@ -12,6 +12,7 @@ MP:
     1:
     - 31302
     - 31303
+    - 3130036
     - 8
     # 3130, but only Saturday 1900 - 2000
     2:
@@ -19,7 +20,7 @@ MP:
 
 # MacDonald Pass, MT
 MP2:
-  Name: MP 2M
+  Name: MP2M
   RX: 147.1
   TX: 147.7
   Mode: D
@@ -34,7 +35,7 @@ MP2:
     - 31301
 
 # North Hills, MT
-NH:
+No Hil:
   Name: NoHil
   RX: 448.9
   TX: 443.9
@@ -45,6 +46,7 @@ NH:
     1:
     - 31302
     - 31303
+    - 3130036
     - 8
     2:
     - 31301
@@ -64,6 +66,20 @@ BF:
     2:
     - 31304
 
+# Columbia Falls
+CF:
+  Name: ColmFls
+  RX: 447.5
+  TX: 442.5
+  Mode: D
+  CC: 1
+  DynamicTGs: 2
+  StaticTGs:
+    1:
+    - 31301
+    - 31304
+    2:
+    - 3130
 # Boulder Hill, MT
 BH:
   Name: BldHl
@@ -76,6 +92,7 @@ BH:
     1:
     - 31302
     - 31303
+    - 3130036
     - 8
     2:
     - 31301
@@ -126,7 +143,7 @@ GF2:
 
 # Big Sky / Lone Mountain, MT
 BSLM:
-  Name: BSLM
+  Name: BgSky
   RX: 447.0
   TX: 442.0
   Mode: D
@@ -153,7 +170,7 @@ BIL:
 
 # Bozeman, MT
 BZ1:
-  Name: Bzmn1
+  Name: BdgRdg
   RX: 449.5
   TX: 444.5
   Mode: D
@@ -168,7 +185,7 @@ BZ1:
 
 # Bozeman, MT
 BZ2:
-  Name: Bzmn2
+  Name: HiFlt
   RX: 449.9
   TX: 444.9
   Mode: D
@@ -183,7 +200,7 @@ BZ2:
 
 # Bozeman, MT
 BZ3:
-  Name: Bzmn3
+  Name: Bzmn
   RX: 448.35
   TX: 443.35
   Mode: D
@@ -199,7 +216,7 @@ BZ3:
 
 # Bozeman, MT
 BZ4:
-  Name: Bzmn4
+  Name: SBzmn
   RX: 447.95
   TX: 442.95
   Mode: D
@@ -230,7 +247,7 @@ BUTTE:
 
 # Dillon, MT
 DLN:
-  Name:  Dilln
+  Name:  BdgPas
   RX: 444.1
   TX: 449.1
   Mode: D
@@ -244,7 +261,7 @@ DLN:
 
 # Eureka, MT
 EUR:
-  Name: Eurka
+  Name: Eurek
   RX: 444.725
   TX: 449.725
   Mode: D
@@ -258,25 +275,25 @@ EUR:
       - 31304
 
 # Hamilton, MT # -- Seems to be a public safety repeater.
-HAM:
-  Name: Hamtn
-  RX: 422.025
-  TX: 429.025
-  Mode: D
-  CC: 1
-  DynamicTGs: 1 #??? FIXME
-  StaticTGs:
-    1:
-      - 9911
-      - 31013
-      - 31089
-      - 31623
-      - 31677
-      - 314710
-    2:
-      - 3130
-      - 31229
-      - 31305
+#HAM:
+#  Name: Hamtn
+#  RX: 422.025
+#  TX: 429.025
+#  Mode: D
+#  CC: 1
+#  DynamicTGs: 1 #??? FIXME
+#  StaticTGs:
+#    1:
+#      - 9911
+#      - 31013
+#      - 31089
+#      - 31623
+#      - 31677
+#      - 314710
+#    2:
+#      - 3130
+#      - 31229
+#      - 31305
 
 # Missoula, MT
 MISS:
@@ -326,6 +343,41 @@ LP:
       - 8
     2:
       - 31301
+    
+# Kalispell is dual mode, so two entries: Digital and Analog
+KalD:
+  Name: KalD
+  RX: 146.76
+  TX: 146.16
+  Mode: D
+  CC: 1
+  Dynamic TGs: 2
+  Static TGs:
+    1: 
+      - 31301
+      - 31304
+    2:
+      - 3031
+      
+Kalisp A:
+  Name: Kalisp A
+  RX: 146.76
+  TX: 146.16
+  Mode: A
+  CTCSS: D152N
+
+# Hotspot
+HtSpt:
+  Name: HtSpt
+  # Same freq for TX & RX is not a mistake.
+  # Special tag to keep this from being in the "Simplex" zone
+  Simplex Repeater: True
+  RX: 440.0375
+  TX: 440.0375
+  Mode: D
+  CC: 1
+  DynamicTGs: 1
+  StaticTGs:  # None on a hotspot.
 
 # Helena analog repeaters
 Belmont:
@@ -335,45 +387,60 @@ Belmont:
   Mode: A
   CTCSS: 100.0
 
-North Hills:
-  Name: NorHils A
-  RX: 449.55
-  TX: 444.55
+
+# The Belmont repeater, upside down!
+BelmntRev:
+  Name: BelmntRev
+  RX: 147.82
+  TX: 147.22
   Mode: A
 
-Hogback1:
-  Name: Hogback 5.45
+Hogback:
+  Name: Hogback
   RX: 145.45
   TX: 144.85
   Mode: A
   CTCSS: 100.0
 
-Hogback2:
-  Name: Hogback 6.85
-  RX: 146.85
-  TX: 146.25
-  Mode: A
-  CTCSS: 146.2
-
-Hel7.32:
-  Name: Hel7.32
+Townsend:
+  Name: Townsend
   RX: 147.32
   TX: 147.92
   Mode: A
 
-Hel224:
-  Name: Hel224
+Don Repeat:
+  Name: Don Repeat
+  RX: 449.55
+  TX: 444.55
+  Mode: A
+  CTCSS: 146.2
+
+NoHil 224:
+  Name: NoHil 224
   RX: 224.68
   TX: 223.08
   Mode: A
   CTCSS: 100.0
 
-Hel443:
-  Name: Hel443
+NoHil 443:
+  Name: NoHil 443
   RX: 443.0
   TX: 448.0
   Mode: A
 
+Port Rptr:
+  Name: Port Rptr
+  RX: 145.470
+  TX: 147.970
+  Mode: A
+  CTCSS: 123.0
+
+BobRpt:
+  Name: BobRpt
+  RX: 442.55
+  TX: 447.55
+  Mode: A
+  CTCSS: 131.8
 
 # Butte Analog
 Butte1:
@@ -418,3 +485,11 @@ Superior:  # On I-90 toward ID
   Mode: A
   CTCSS: 88.5
 
+# A very special channel.  Paired with HomeRpt Simplex channel
+# Listens to Belmont repeater directly.
+HmRptWalkie:
+  Name: HmRptWalkie
+  RX: 147.22
+  TX: 434.6
+  Mode: A
+  CTCSS: 88.5

@@ -10,36 +10,70 @@ ALL_ZONES:
   - 146.52
   - 446.0
   - Al & Kathe
-  - APRS
+
+Al Kathe Zone:
+  - Belmont
+  - HomeRpt
+  - HmRptWalkie
+
+ARES:
+  - Belmont
+  - Don Repeat
+  - Port Rptr
+  - Helena Dig
 
 Helena:
-  - MP MPRG1
-  - MP 2M MPRG1
-  - NoHil MPRG1
-  - BldHl MPRG1
   - Belmont
-  - NorHils A
-  - Hogback 5.45
-  - Hogback 6.85
-  - Hel7.32
-  - Hel224
-  - Hel443
-  - "146.52"
-  - "446.0"
+  - MP MPRG1
+  - MP MPRG4
+  - NoHil MPRG1
+  - NoHil MPRG4
+  - BldHl MPRG1
+  - BldHl MPRG4
+  - 146.58
+  - Don Repeat
+  - Port Rptr
+  - Helena Dig
   - Helena ARES
-  - Al & Kathe
+  - Club Trav
+  - BobRpt
+  - Hogback
+  - NoHil 224
+  - NoHil 443
+  - HtSpt MPRG1
+  - Belmnt In
+  - Belmnt Out
+  - HomeRpt
+  - HmRptWalkie
   - WX1
+
+# Disable until next year...
+#GovernorsCup:
+# - NoHil MPRG4
+#  - BldHl MPRG4
+#  - MP MPRG4
+#  - MP2M MPRG4
+#  - Port Rptr
+#  - Helena ARES
+#  - Belmont
+#  - Simp 1D 145.79
+#  - "146.52"
+
+# Disable until next year...
+#Elkhorn:
+#  - NoHil MPRG4
+#  - BldHl MPRG4
+#  - MP MPRG4
+#  - MP2M MPRG4
+#  - Port Rptr
+#  - Helena ARES
+#  - Belmont
+#  - Simp 1D 145.79
+#  - "146.52"
 
 MP:
   - Belmont
   - Helena ARES
-  - Al & Kathe
-  - WX1
-
-NoHil:
-  - Belmont
-  - Helena ARES
-  - Al & Kathe
   - WX1
 
 Weather:
@@ -50,3 +84,47 @@ Weather:
   - WX5
   - WX6
   - WX7
+
+# Public Safety
+Pub Safety:
+  - Blue
+  - Neon
+  - Tan
+  - Gold
+  - Alpha
+  - Bravo
+  - Charlie
+  - Delta
+  - Echo
+  - Fox
+  - Golf
+  - Silver
+  - Black
+  - Ruby
+  - Garnet
+  - Red
+  - Maroon
+  - Coral
+  - Scarlet
+  - Copper
+  - Burgundy
+  - Crimson
+  - White
+  - Gray
+  - Pink
+  - Violet
+  - Purple
+  - Brown
+  - Green
+
+# Fire only
+Fire:
+  - Ruby
+  - Garnet
+  - Red
+  - Maroon
+  - Coral
+  - Scarlet
+  - Copper
+  - Burgundy
+  - Crimson

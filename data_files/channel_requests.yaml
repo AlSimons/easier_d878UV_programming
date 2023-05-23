@@ -24,12 +24,16 @@
     - MPRG1
     - MPRG2
     - MPRG3
-    - MPRGClust
+    - MPRG4
+    - MPRGCl
     - Local2
+    - BGV
     - MTWide
     - MTChat
     - NoAmer
     - WW
+    - POTA
+    - MTARES
 
 - GROUP_TAC:
     - TAC310
@@ -43,13 +47,13 @@
 #    - TAC318
 #    - TAC319
 
-- GROUP_COLORADO:
-    - CO SW
-    - CO Chat
-    - CO SvWX
-    - CentrRgn
-    - RkyMtnWide
-    - EColo
+#- GROUP_COLORADO:
+#    - CO SW
+#    - CO Chat
+#    - CO SvWX
+#    - CentrRgn
+#    - RkyMtnWide
+#    - EColo
 
 # Mac Pass repeaters
 # Mac Pass UHF
@@ -57,8 +61,8 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Mac Pass 2M
@@ -66,17 +70,17 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Helena North Hills
-- R: NH
+- R: No Hil
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Boulder Hill
@@ -84,8 +88,14 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
+    - PARROT
+
+# Hotspot
+- R: HtSpt
+  T:
+    - GROUP_MONTANA
     - PARROT
 
 # Great Falls
@@ -93,16 +103,16 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 - R: GF2
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 
@@ -110,9 +120,20 @@
 - R: BF
   T:
     - GROUP_MONTANA
+    - NW7RG
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
+    - PARROT
+
+# Columbia Falls
+- R: CF
+  T:
+    - GROUP_MONTANA
+    - NW7RG
+    - GROUP_TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Big Sky / Lone Mountain
@@ -120,8 +141,8 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Billings
@@ -129,8 +150,8 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Bozeman
@@ -138,32 +159,32 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 - R: BZ2
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 - R: BZ3
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 - R: BZ4
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Butte
@@ -171,8 +192,8 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Dillon
@@ -180,8 +201,8 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Eureka
@@ -189,26 +210,26 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
-# Hamilton
-- R: HAM
-  T:
-    - GROUP_MONTANA
-    - GROUP_TAC
-    - US SAR
-    - US SAR TAC
-    - PARROT
+# Hamilton Seems to be a public safety repeater
+#- R: HAM
+#  T:
+#    - GROUP_MONTANA
+#    - GROUP_TAC
+#    - SAR
+#    - SarTac
+#    - PARROT
 
 # Missoula
 - R: MISS
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Toston
@@ -216,8 +237,8 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Lookout Pass
@@ -225,8 +246,15 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
+    - PARROT
+
+# Kalispell
+- R: KalD
+  T:
+    - GROUP_MONTANA
+    - GROUP_TAC
     - PARROT
 
 # Kimberly, BC
@@ -234,90 +262,93 @@
   T:
     - GROUP_MONTANA
     - GROUP_TAC
-    - US SAR
-    - US SAR TAC
+    - SAR
+    - SarTac
     - PARROT
 
 # Albuquerque
-- R: ABQ
-  T:
-    - GROUP_MONTANA
-    - GROUP_TAC
-    - US SAR
-    - US SAR TAC
-    - PARROT
+#- R: ABQ
+#  T:
+#    - GROUP_MONTANA
+#    - GROUP_TAC
+#    - SAR
+#    - SarTac
+#    - PARROT
 
 # Santa Fe, NM
-- R: SFNM
-  T:
-    - GROUP_MONTANA
-    - GROUP_TAC
-    - US SAR
-    - US SAR TAC
-    - PARROT
+#- R: SFNM
+#  T:
+#    - GROUP_MONTANA
+#    - GROUP_TAC
+#    - SAR
+#    - SarTac
+#    - PARROT
 
 # Torrence County, NM
-- R: TNM
-  T:
-    - GROUP_MONTANA
-    - GROUP_TAC
-    - US SAR
-    - US SAR TAC
-    - PARROT
+#- R: TNM
+#  T:
+#    - GROUP_MONTANA
+#    - GROUP_TAC
+#    - SAR
+#    - SarTac
+#    - PARROT
 
 # Cibola County, NM
-- R: CNM
-  T:
-    - GROUP_MONTANA
-    - GROUP_TAC
-    - PARROT
-    - US SAR
-    - US SAR TAC
+#- R: CNM
+#  T:
+#    - GROUP_MONTANA
+#    - GROUP_TAC
+#    - PARROT
+#    - SAR
+#    - SarTac
 
 # Idaho Falls, ID
-- R: IdahoFalls
-  T:
-    - GROUP_MONTANA
-    - ID SW
-    - SE ID
-    - GROUP_TAC
-    - PARROT
-#    - US SAR
+#- R: IdahoFalls
+#  T:
+#    - GROUP_MONTANA
+#    - ID SW
+#    - SE ID
+#    - GROUP_TAC
+#    - PARROT
+#    - SAR
 
 # Malad City, ID
-- R: Malad
-  T:
-    - GROUP_MONTANA
-    - ID SW
-    - SE ID
-    - GROUP_TAC
-    - PARROT
-#    - US SAR
+#- R: Malad
+#  T:
+#    - GROUP_MONTANA
+#    - ID SW
+#    - SE ID
+#    - GROUP_TAC
+#    - PARROT
+#    - SAR
 
 # Driggs ID
-- R: Driggs
-  T:
-    - GROUP_MONTANA
-    - ID SW
-    - SE ID
-    - GROUP_TAC
-    - PARROT
-#    - US SAR
+#- R: Driggs
+#  T:
+#    - GROUP_MONTANA
+#    - ID SW
+#    - SE ID
+#    - GROUP_TAC
+#    - PARROT
+#    - SAR
 
 #
 # Helena analog repeaters
 - R: Belmont
-- R: North Hills
-- R: Hogback1
-- R: Hogback2
-- R: Hel7.32
-- R: Hel224
-- R: Hel443
+- R: BelmntRev
+- R: Hogback
+- R: Don Repeat
+- R: Townsend
+- R: NoHil 224
+- R: NoHil 443
+- R: BobRpt
 - R: Butte1
 - R: Butte2
 - R: Butte3
 - R: Butte4
 - R: Boulder
+- R: Port Rptr
+- R: HmRptWalkie
 
 # Trip analog repeaters
 - R: Superior
@@ -337,11 +368,21 @@
 # Analog Simplex channels
 - S: 146.52
 - S: 446.0
+- S: 146.48
+- S: 146.50
+- S: 146.54
 - S: 146.55
+- S: 146.56
+- S: 146.58
 - S: Al & Kathe
 - S: Quartzfest
 - S: Helena ARES
+- S: Club Trav
+- S: Helena Dig
 - S: APRS
+- S: Belmnt In
+- S: Belmnt Out
+- S: HomeRpt
 
 # Digital Simplex channels
 - S: Simp 1D 145.79
@@ -362,3 +403,33 @@
 - S: WX6
 - S: WX7
 
+# Simplex Montana Mutual Aid
+- S: Blue
+- S: Neon
+- S: Tan
+- S: Gold
+- S: Alpha
+- S: Bravo
+- S: Charlie
+- S: Delta
+- S: Echo
+- S: Fox
+- S: Golf
+- S: Silver
+- S: Black
+- S: Ruby
+- S: Garnet
+- S: Red
+- S: Maroon
+- S: Coral
+- S: Scarlet
+- S: Copper
+- S: Burgundy
+- S: Crimson
+- S: White
+- S: Gray
+- S: Pink
+- S: Violet
+- S: Purple
+- S: Brown
+- S: Green

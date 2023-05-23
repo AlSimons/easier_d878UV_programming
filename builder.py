@@ -220,9 +220,9 @@ def make_analog_repeater_channel(channels,
         channel["CTCSS/DCS Decode"] = repeater['CTCSS']
         channel["CTCSS/DCS Encode"] = repeater['CTCSS']
     if 'RCTCSS' in keys:
-        channel["CTCSS/DCS Encode"] = repeater['RCTCSS']
+        channel["CTCSS/DCS Decode"] = repeater['RCTCSS']
     if 'TCTCSS' in keys:
-        channel["CTCSS/DCS Decode"] = repeater['TCTCSS']
+        channel["CTCSS/DCS Encode"] = repeater['TCTCSS']
     if 'RO' in keys and repeater['RO']:
         channel['PTT Prohibit'] = 'True'
 
@@ -289,6 +289,8 @@ def make_analog_repeater_from_repeaterbook_channels(repeaters,
         except KeyError:
             # Use the generic "Ana Rptrs"
             state = 'Ana Rptrs'
+        if state == 'Montana':
+            state = 'Ana Rptrs'
         insert_into_zones(channel, zones, state=state)
     return channels, channels_by_name
 
@@ -326,6 +328,8 @@ def make_digital_repeater_channel(channels,
     channel['Repeater Name'] = repeater['Name']
     channel_name = repeater['Decorated Name'] + ' ' + talkgroup
     # Channel names are limited to 16 characters.
+    if len(channel_name) > 16:
+        print(f"Truncating channel name '{channel_name}' to '{channel_name[:16]}")
     channel_name = channel_name[:16]
     channel['Channel Name'] = channel_name
     channel['Transmit Frequency'] = '{:<09}'.format(repeater['TX'])
@@ -360,7 +364,7 @@ def make_digital_repeater_channel(channels,
         for slot in [1, 2]:
             if talkgroup_number in repeater['StaticTGs'][slot]:
                 channel['Slot'] = slot  # Choose the right slot for a static TG
-    except KeyError:
+    except (KeyError, TypeError):
         # No static TGs for this slot (or at all)... Move along
         pass
 
@@ -380,20 +384,24 @@ def make_digital_repeater_channels(channels,
                                    radio_id,
                                    single_radio_id):
     # Have a disconnect in every group with digital repeaters.
-    # The reason we do it conditionally is that we comr through here once for
+    # The reason we do it conditionally is that we come through here once for
     # every radio_id.
-    if channel_request['T'][-1] != 'Disconnect':
-        channel_request['T'].append('Disconnect')
+    if 'TgDisc' not in channel_request['T']:
+        channel_request['T'].append('TgDisc')
     for talkgroup in channel_request['T']:
-        make_digital_repeater_channel(channels,
-                                      channels_by_name,
-                                      repeater,
-                                      talkgroup,
-                                      talkgroups[talkgroup],
-                                      channel_defaults,
-                                      zones,
-                                      radio_id,
-                                      single_radio_id)
+        try:
+            make_digital_repeater_channel(channels,
+                                          channels_by_name,
+                                          repeater,
+                                          talkgroup,
+                                          talkgroups[talkgroup],
+                                          channel_defaults,
+                                          zones,
+                                          radio_id,
+                                          single_radio_id)
+        except KeyError:
+            pass
+            raise
 
 
 def make_digital_simplex_channel(channels,
@@ -560,6 +568,7 @@ def add_special_zone_members(channels_by_name,
                 # is probably because the channel has a RadioID prefix. Try that
                 # way.  If that fails, bomb.
                 try:
+                    channel_name = str(channel_name)
                     insert_into_zone(channels_by_name[channel_name],
                                      zone_name,
                                      zones,
@@ -573,7 +582,7 @@ def add_special_zone_members(channels_by_name,
                     # a key error, report it. We expect these for 220 repeaters
                     # when we're building for the 878.
                     try:
-                        channel_name = radio_id['Abbrev'] + ' ' + channel_name
+                        channel_name = f"{radio_id['Abbrev']} {str(channel_name)}"
                         channel_by_name = channels_by_name[channel_name]
                         insert_into_zone(channel_by_name,
                                          zone_name,
@@ -583,6 +592,8 @@ def add_special_zone_members(channels_by_name,
                     except KeyError:
                         print("Can't find channel {}. Possibly 220 channel?".
                               format(channel_name))
+                    except TypeError:
+                        print(f"Can't concatenate {radio_id['Abbrev']} and {channel_name}")
 
 
 def insert_into_zones(channel, zones, radio_id=None, state='Ana Rptrs',

@@ -1,76 +1,47 @@
 # Northwest Repeater Group
-NW7RG-USA: 31304
+#NW7RG-USA: 31304
 
 # Mac Pass Radio Group
 MPRG1: 31301
 MPRG2: 31302
 MPRG3: 3130035
 MPRG4: 3130036
-MPRGClust: 8
+MPRGCl: 8
 Local2: 2
 
 # Montana
+BGV: 31303
+NW7RG: 31304
 MTWide: 3130
 MTChat: 31300
+MTARES: 31309
+
+# POTA
+POTA: 3181
 
 # Idaho
-ID SW: 3116
-SE ID: 31167
+#ID SW: 3116
+#SE ID: 31167
 
 # Utah
-UT SW2: 13149
-UTAH: 3149
+#UT SW2: 13149
+#UTAH: 3149
 
 # Colorado
-CO SW: 3108
-CO Chat: 31080
-CO SvWX: 31083
-RkyMtnWide: 700
-CentrRgn: 720
-EColo: 705
+#CO SW: 3108
+#CO Chat: 31080
+#CO SvWX: 31083
+#RkyMtnWide: 700
+#CentrRgn: 720
+#EColo: 705
 
-# Kansas
-Kansas: 3120
-BRAZOS: 312037
-
-# Missouri
-Local9: 9
-BYRG: 31201
-KCSkywarn: 31205
-CentrlMO: 31296
-SW MO: 31291
-MOWide: 3129
-Midwest: 3169
-WW-M: 1
-NA-M: 3
-STLMet: 31292
-
-# Illinois
-ILWide: 3117
-
-# Ohio
-OHWide: 3139
-MW USA: 3169
-OHSVWX: 31392
-
-# Pennsylvania
-PAWide: 3142
-W PA: 31422
-NE USA: 3172
-NC PA: 31423
-NE PA: 31424
-
-# Connecticut
-CT-TAC1-M: 8902
-CT-TAC311-M: 8909
-CTWide: 8901
 
 # Disconnect
-TG DISC: 4000
+TgDisc: 4000
 
 # Emergency
-US SAR: 31681
-US SAR TAC: 31682
+SAR: 31681
+SarTac: 31682
 
 # Wide Area
 NoAmer: 93
@@ -78,9 +49,6 @@ WW: 91
 
 # Simplex
 Simplex: 99
-
-# Disconnect
-Disconnect: 4000
 
 # Parrot  NOTE: PRIVATE CALL, notice different format of YAML
 PARROT:

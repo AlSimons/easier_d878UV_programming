@@ -18,8 +18,23 @@
 446.0:
   Freq: 446.0
   Mode: A
+146.48:
+  Freq: 146.48
+  Mode: A
+146.50:
+  Freq: 146.50
+  Mode: A
+146.54:
+  Freq: 146.54
+  Mode: A
 146.55:
   Freq: 146.55
+  Mode: A
+146.56:
+  Freq: 146.56
+  Mode: A
+146.58:
+  Freq: 146.58
   Mode: A
 Al & Kathe:
   Freq: 147.54
@@ -27,8 +42,26 @@ Al & Kathe:
 Quartzfest:
   Freq: 146.5
   Mode: A
+Belmnt In:
+  Freq: 147.82
+  Mode: A
+Belmnt Out:
+  Freq: 147.22
+  Mode: A
 Helena ARES:
   Freq: 147.5
+  Mode: A
+Helena Dig:
+  Freq: 145.05
+  Mode: A
+Club Trav:
+  Freq: 146.46
+  Mode: A
+Belmont In:
+  Freq: 147.82
+  Mode: A
+Belmont Out:
+  Freq: 147.22
   Mode: A
 APRS:
   Freq: 144.39
@@ -54,9 +87,194 @@ Simp 4D 433.45:
   Freq: 433.45
   Mode: D
 
-# Receive-only
+# A very special channel.  Paired with a HmRptWalkie repeater channel to access
+# Belmont. Put this in the B side and Belmont in the A side.  This is RO, so it
+# won't repeat Belmont's received signal onto 434.6.
+# in Repeater mode. (Repeater mode is set in the Radio Set of Settings.)
+HomeRpt:
+  Freq: 434.6
+  Mode: A
+  CTCSS: 88.5
+  RO: True
+
+# Misc receive-only
 SAR RO:
   Freq: 155.16
+  Mode: A
+  RO: True
+
+# Montana public safety interoperability channels
+# Blue VLAW31
+Blue:
+  Freq: 155.475
+  Mode: A
+  RO: True
+
+# Neon General Mutual Aid and Coordination
+Neon:
+  Freq: 157.425
+  Mode: A
+  RO: True
+
+# Tan VMED28 State Air-to-Ground Coordination
+Tan:
+  Freq: 155.34
+  Mode: A
+  RO: True
+
+# Gold General Mutual Aid and Coordination
+Gold:
+  Freq: 153.905
+  Mode: A
+  RO: True
+
+# Charlie Tactical General Use Interoperability
+Charlie:
+  Freq: 154.4525
+  Mode: A
+  RO: True
+
+# Delta Tactical General Use Interoperability
+Delta:
+  Freq: 155.7525
+  Mode: A
+  RO: True
+
+# Echo Tactical General Use Interoperability
+Echo:
+  Freq: 158.7375
+  Mode: A
+  RO: True
+
+# Fox Tactical General Use Interoperability
+Fox:
+  Freq: 159.4725
+  Mode: A
+  RO: True
+
+# Golf Tactical General Use Interoperability
+Golf:
+  Freq: 151.1375
+  Mode: A
+  RO: True
+
+# Silver Law Enforcement Mutual Aid
+Silver:
+  Freq: 155.79
+  Mode: A
+  RO: True
+
+# Black Law Enforcement Tactical
+Black:
+  Freq: 153.8
+  Mode: A
+  RO: True
+
+# Ruby State Fire Repeater
+Ruby:
+  Freq: 153.83
+  Mode: A
+  RO: True
+
+# Garnet State Fire Repeater Control Input
+Garnet:
+  Freq: 159.345
+  Mode: A
+  RO: True
+
+# Red State Fire Mutual Aid
+Red:
+  Freq: 154.07
+  Mode: A
+  RO: True
+
+# Maroon VFIRE21 State Command and Control
+Maroon:
+  Freq: 154.28
+  Mode: A
+  RO: True
+
+# Coral State Fire Ground #1
+Coral:
+  Freq: 154.265
+  Mode: A
+  RO: True
+
+# Scarlet State Fire Ground #2
+Scarlet:
+  Freq: 154.295
+  Mode: A
+  RO: True
+
+# Copper VFIRE24 State Fire Ground #3
+Copper:
+  Freq: 154.2725
+  Mode: A
+  RO: True
+
+# Burgundy VFIRE25 State Fire Ground #4
+Burgundy:
+  Freq: 154.2875
+  Mode: A
+  RO: True
+
+# Crimson VFIRE26 State Fire Ground #5
+Crimson:
+  Freq: 154.3025
+  Mode: A
+  RO: True
+
+# Alpha Interagency Fire Use Only
+Alpha:
+  Freq: 172.225
+  Mode: A
+  RO: True
+
+# Bravo Interagency Fire Use Only
+Bravo:
+  Freq: 172.375
+  Mode: A
+  RO: True
+
+# White Hospital - Ambulance and Hosp - Hosp
+White:
+  Freq: 155.28
+  Mode: A
+  RO: True
+
+# Gray On scene incident management
+Gray:
+  Freq: 155.325
+  Mode: A
+  RO: True
+
+# Pink On scene incident management
+Pink:
+  Freq: 155.385
+  Mode: A
+  RO: True
+
+# Violet National SAR Coordination Only
+Violet:
+  Freq: 155.16
+  Mode: A
+  RO: True
+
+# Purple State SAR Coordination Only
+Purple:
+  Freq: 155.22
+  Mode: A
+  RO: True
+
+# Brown State DES Direction and Control
+Brown:
+  Freq: 155.82
+  Mode: A
+  RO: True
+
+# Green State Federal Common
+Green:
+  Freq: 171.475
   Mode: A
   RO: True
 
