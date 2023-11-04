@@ -32,8 +32,9 @@ def load_data_from_yaml_files():
         - channel_requests.yaml,
         - special_zones.yaml,
         - channel_defaults.yaml,
-        - field_names.yaml
-        - lat_long.yaml
+        - field_names.yaml,
+        - lat_long.yaml,
+        - zone_order.yaml
     :return: Dicts:
                radio_ids,
                repeaters,
@@ -44,6 +45,7 @@ def load_data_from_yaml_files():
                channel_defaults
                field_names
                lat_long
+               zone_order
     """
     with open('data_files/radio_ids.yaml') as f:
         radio_ids = yaml.safe_load(f)
@@ -73,8 +75,10 @@ def load_data_from_yaml_files():
         field_names = yaml.safe_load(f)
     with open('data_files/lat_long.yaml') as f:
         lat_long = yaml.safe_load(f)
+    with open('data_files/zone_order.yaml') as f:
+        zone_order = yaml.safe_load(f)
     return radio_ids, repeaters, talkgroups, simplex, channel_requests, \
-        special_zones, channel_defaults, field_names, lat_long
+        special_zones, channel_defaults, field_names, lat_long, zone_order
 
 
 def expand_channel_requests(channel_requests):
@@ -664,7 +668,7 @@ def insert_into_zone(channel, zone_key, zones, radio_id, single_radio_id=True):
         this_zone['B Channel TX Frequency'] = channel['Transmit Frequency']
 
 
-def change_zone_dict_to_list(zone_dict):
+def change_zone_dict_to_list(zone_dict, zone_order):
     """
     Because we had to add channels to zones based on zone name, the zone
     data are currently stored in a dict, with the keys being the zone name.
@@ -674,10 +678,17 @@ def change_zone_dict_to_list(zone_dict):
     In order to write this information to a csv, we have to convert from a
     dict of dicts to a list of dicts, dropping the redundant outer key.
     :param zone_dict: A dict of dicts containing zone information.
+    :param zone_order: A list of the order in which to emit the zones.
     :return: A list of dicts containing zone information.
     """
     zone_list = []
-    for zone in zone_dict.keys():
+    # Process the zones we especially care about ordering.
+    for zone in zone_order:
+        zone_list.append(zone_dict[zone])
+        del(zone_dict[zone])
+
+    # And now handle the remaining zones in alphabetic order
+    for zone in sorted(zone_dict.keys()):
         zone_list.append(zone_dict[zone])
     return zone_list
 
@@ -693,7 +704,8 @@ def main():
      special_zones,
      channel_defaults,
      field_names,
-     lat_long) = load_data_from_yaml_files()
+     lat_long,
+     zone_order) = load_data_from_yaml_files()
 
     analog_repeaters = get_analog_repeaters_from_repeaterbook(lat_long)
 
@@ -721,7 +733,7 @@ def main():
                              len(radio_ids) == 1)
     write_dict_to_csv(channels, 'channels.csv', field_names['channels'])
     write_dict_to_csv(radio_ids, 'radio_ids.csv', field_names['radio_ids'])
-    zone_list = change_zone_dict_to_list(zones)
+    zone_list = change_zone_dict_to_list(zones, zone_order)
     write_dict_to_csv(zone_list, 'zones.csv', field_names['zones'])
 
 
