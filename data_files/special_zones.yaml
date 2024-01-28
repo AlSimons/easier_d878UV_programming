@@ -25,6 +25,10 @@ Helena:
   - Belmont
   - MP MPRG1
   - MP MPRG4
+  - Belmnt In
+  - Belmnt Out
+  - Blmnt Tone
+  - Belmnt Rev
   - NoHil MPRG1
   - NoHil MPRG4
   - BldHl MPRG1
@@ -40,8 +44,6 @@ Helena:
   - NoHil 224
   - NoHil 443
   - HtSpt MPRG1
-  - Belmnt In
-  - Belmnt Out
   - HomeRpt
   - HmRptWalkie
   - WX1

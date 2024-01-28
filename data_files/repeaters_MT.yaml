@@ -387,10 +387,18 @@ Belmont:
   Mode: A
   CTCSS: 100.0
 
+# Belmont, with receive side tone
+Blmnt Tone:
+  Name: Blmnt Tone
+  RX: 147.22
+  TX: 147.82
+  Mode: A
+  CTCSS: 100.0
+  Squelch Mode: Tone
 
 # The Belmont repeater, upside down!
-BelmntRev:
-  Name: BelmntRev
+Belmnt Rev:
+  Name: Belmnt Rev
   RX: 147.82
   TX: 147.22
   Mode: A
@@ -407,6 +415,7 @@ Townsend:
   RX: 147.32
   TX: 147.92
   Mode: A
+  CTCSS: 100.0
 
 Don Repeat:
   Name: Don Repeat

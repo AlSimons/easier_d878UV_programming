@@ -218,6 +218,8 @@ def make_analog_repeater_channel(channels,
 
     keys = repeater.keys()
     # Can't specify both CTCSS (both dirs) and either RCTCSS or TCTCSS
+    # Note that receive tone squelch requires both a CTCSS or RCTCSS _and_
+    # Squelch Mode = Tone
     if 'CTCSS' in keys and ('RCTCSS' in keys or 'TCTCSS' in keys):
         raise KeyError
     if 'CTCSS' in keys:
@@ -229,6 +231,9 @@ def make_analog_repeater_channel(channels,
         channel["CTCSS/DCS Encode"] = repeater['TCTCSS']
     if 'RO' in keys and repeater['RO']:
         channel['PTT Prohibit'] = 'True'
+
+    if 'Squelch Mode' in keys:
+        channel['Squelch Mode'] = repeater['Squelch Mode']
 
     channels.append(channel)
     channels_by_name[channel['Channel Name']] = channel
