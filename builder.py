@@ -225,8 +225,10 @@ def make_analog_repeater_channel(channels,
     if 'CTCSS' in keys:
         channel["CTCSS/DCS Decode"] = repeater['CTCSS']
         channel["CTCSS/DCS Encode"] = repeater['CTCSS']
+        channel["Squelch Mode"] = 'CTCSS/DCS'
     if 'RCTCSS' in keys:
         channel["CTCSS/DCS Decode"] = repeater['RCTCSS']
+        channel["Squelch Mode"] = 'CTCSS/DCS'
     if 'TCTCSS' in keys:
         channel["CTCSS/DCS Encode"] = repeater['TCTCSS']
     if 'RO' in keys and repeater['RO']:

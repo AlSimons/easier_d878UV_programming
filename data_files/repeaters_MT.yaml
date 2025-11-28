@@ -364,7 +364,7 @@ Kalisp A:
   RX: 146.76
   TX: 146.16
   Mode: A
-  CTCSS: D152N
+  TCTCSS: D152N
 
 # Hotspot
 HtSpt:
@@ -385,7 +385,7 @@ Belmont:
   RX: 147.22
   TX: 147.82
   Mode: A
-  CTCSS: 100.0
+  TCTCSS: 100.0
 
 # Belmont, with receive side tone
 Blmnt Tone:
@@ -394,7 +394,6 @@ Blmnt Tone:
   TX: 147.82
   Mode: A
   CTCSS: 100.0
-  Squelch Mode: Tone
 
 # The Belmont repeater, upside down!
 Belmnt Rev:
@@ -408,28 +407,28 @@ Hogback:
   RX: 145.45
   TX: 144.85
   Mode: A
-  CTCSS: 100.0
+  TCTCSS: 100.0
 
 Townsend:
   Name: Townsend
   RX: 147.32
   TX: 147.92
   Mode: A
-  CTCSS: 100.0
+  TCTCSS: 100.0
 
 Don Repeat:
   Name: Don Repeat
   RX: 449.55
   TX: 444.55
   Mode: A
-  CTCSS: 146.2
+  TCTCSS: 146.2
 
 NoHil 224:
   Name: NoHil 224
   RX: 224.68
   TX: 223.08
   Mode: A
-  CTCSS: 100.0
+  TCTCSS: 100.0
 
 NoHil 443:
   Name: NoHil 443
@@ -442,14 +441,23 @@ Port Rptr:
   RX: 145.470
   TX: 147.970
   Mode: A
-  CTCSS: 146.2
+  TCTCSS: 162.2
+
+PR Simul:
+  Name: PR Simul
+  RX: 147.970
+  TX: 145.470
+  Mode: A
+  RCTCSS: 162.2
+  TCTCSS: 146.2
+
 
 BobRpt:
   Name: BobRpt
   RX: 442.55
   TX: 447.55
   Mode: A
-  CTCSS: 131.8
+  TCTCSS: 131.8
 
 # Butte Analog
 Butte1:
@@ -457,42 +465,42 @@ Butte1:
   RX: 144.50
   TX: 147.50
   Mode: A
-  CTCSS: 107.2
+  TCTCSS: 107.2
 
 Butte2:
   Name: Butte 6.94
   RX: 146.94
   TX: 146.34
   Mode: A
-  CTCSS: 100.0
+  TCTCSS: 100.0
 
 Butte3:
   Name: Butte 7.02
   RX: 147.02
   TX: 147.62
   Mode: A
-  CTCSS: 107.2
+  TCTCSS: 107.2
 
 Butte4:
   Name: Butte 449.4
   RX: 449.40
   TX: 444.40
   Mode: A
-  CTCSS: 131.8
+  TCTCSS: 131.8
 
 Boulder:
   Name: Boulder 6.70
   RX: 146.70
   TX: 146.10
   Mode: A
-  CTCSS: 162.2
+  TCTCSS: 162.2
 
 Superior:  # On I-90 toward ID
   Name: Superior
   RX: 146.96
   TX: 146.36
   Mode: A
-  CTCSS: 88.5
+  TCTCSS: 88.5
 
 # A very special channel.  Paired with HomeRpt Simplex channel
 # Listens to Belmont repeater directly.
@@ -501,4 +509,4 @@ HmRptWalkie:
   RX: 147.22
   TX: 434.6
   Mode: A
-  CTCSS: 88.5
+  TCTCSS: 88.5

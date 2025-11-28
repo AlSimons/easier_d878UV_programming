@@ -61,16 +61,17 @@ Helena:
 #  - "146.52"
 
 # Disable until next year...
-#Elkhorn:
-#  - NoHil MPRG4
-#  - BldHl MPRG4
-#  - MP MPRG4
-#  - MP2M MPRG4
-#  - Port Rptr
-#  - Helena ARES
-#  - Belmont
-#  - Simp 1D 145.79
-#  - "146.52"
+Elkhorn:
+  - NoHil MPRG4
+  - BldHl MPRG4
+  - MP MPRG4
+  - MP2M MPRG4
+  - Port Rptr
+  - Helena ARES
+  - Belmont
+  - Simp 1D 145.79
+  - "146.52"
+  - PR Simul
 
 MP:
   - Belmont
